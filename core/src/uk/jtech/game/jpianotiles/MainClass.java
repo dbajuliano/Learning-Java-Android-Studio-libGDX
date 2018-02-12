@@ -8,6 +8,11 @@ import com.badlogic.gdx.utils.Array;
 
 import static uk.jtech.game.jpianotiles.Cons.*;
 
+/**
+ * Created by julianotech on 12/02/2018.
+ * This is the main class of the game clone Piano Tiles
+ */
+
 public class MainClass extends ApplicationAdapter {
 
 	private ShapeRenderer shapeRenderer;
