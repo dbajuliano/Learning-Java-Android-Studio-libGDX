@@ -2,7 +2,7 @@ package uk.jtech.game.jpianotiles;
 
 import com.badlogic.gdx.Gdx;
 
-import java.awt.Color;
+import com.badlogic.gdx.graphics.Color;
 
 /**
  * Created by julianotech on 12/02/2018.
