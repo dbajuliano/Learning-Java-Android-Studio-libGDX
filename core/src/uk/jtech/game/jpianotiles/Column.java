@@ -33,4 +33,8 @@ public class Column {
         }
     }
 
+    public void update(float time){
+        y -= time*curSpeed;
+    }
+
 }

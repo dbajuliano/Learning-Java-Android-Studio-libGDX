@@ -12,6 +12,7 @@ public class MainClass extends ApplicationAdapter {
 
 	private ShapeRenderer shapeRenderer;
 	private Array<Column> columns;
+	private  float totalTime;
 
 	@Override
 	public void create () {
@@ -23,10 +24,14 @@ public class MainClass extends ApplicationAdapter {
 		columns.add( new Column( 0,0 ) );
 		columns.add( new Column( tileHeight,1 ) );
 		columns.add( new Column( 2*tileHeight,2 ) );
+
+		totalTime = 0;
 	}
 
 	@Override
 	public void render () {
+		update(Gdx.graphics.getDeltaTime());
+
 		Gdx.gl.glClearColor(1, 1, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -35,7 +40,16 @@ public class MainClass extends ApplicationAdapter {
 			f.draw( shapeRenderer );
 		}
 		shapeRenderer.end();
+	}
 
+	private void update(float deltaTime){
+		totalTime += deltaTime;
+
+		curSpeed = startSpeed + tileHeight*totalTime/8f;
+
+		for (Column f:columns){
+			f.update( deltaTime);
+		}
 	}
 	
 	@Override
