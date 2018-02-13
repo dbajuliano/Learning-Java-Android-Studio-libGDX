@@ -10,13 +10,18 @@ import static uk.jtech.game.jpianotiles.Cons.*;
  */
 
 public class Column {
-    private float y;
+    public float y;
 
     private int correct; // 0 to 3
+
+    private int pos;
+
+    private boolean ok;
 
     public Column (float y, int correct){
         this.y = y;
         this.correct = correct;
+        ok=false;
     }
 
     public void draw(ShapeRenderer shapeRenderer){
@@ -33,8 +38,29 @@ public class Column {
         }
     }
 
-    public void update(float time){
+    public int update(float time){
         y -= time*curSpeed;
+        if (y< 0 - tileHeight){
+            if (ok){
+                return 1;
+            }else {
+                return 2;
+            }
+        }
+        return 0;
     }
 
+    public int touch(int tx, int ty){
+        if (ty >= y && ty <= y +tileHeight){
+            pos = tx/tileWidth;
+            if (pos==correct){
+                ok=true;
+                return 1;
+            }else{
+                ok=false;
+                return 2;
+            }
+        }
+        return 0;
+    }
 }

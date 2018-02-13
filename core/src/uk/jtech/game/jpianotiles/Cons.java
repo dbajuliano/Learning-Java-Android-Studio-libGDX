@@ -1,7 +1,6 @@
 package uk.jtech.game.jpianotiles;
 
 import com.badlogic.gdx.Gdx;
-
 import com.badlogic.gdx.graphics.Color;
 
 /**
@@ -18,6 +17,6 @@ public class Cons {
     public static int tileWidth = screenx/4;
     public static int tileHeight = screeny/4;
 
-    public static float startSpeed = 1*tileHeight/1f;
+    public static float startSpeed = 1*tileHeight/2f;
     public static float curSpeed = 0;
 }
