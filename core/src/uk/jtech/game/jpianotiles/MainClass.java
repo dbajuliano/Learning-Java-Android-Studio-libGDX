@@ -38,6 +38,8 @@ public class MainClass extends ApplicationAdapter {
 
 	private Texture texStart;
 
+	private Piano piano;
+
 	@Override
 	public void create () {
 		shapeRenderer = new ShapeRenderer(  );
@@ -50,6 +52,8 @@ public class MainClass extends ApplicationAdapter {
 		rand = new Random();
 
 		texStart = new Texture("play.png"  );
+
+		piano = new Piano( "christimas" );
 
 		start();
 	}
@@ -120,6 +124,7 @@ public class MainClass extends ApplicationAdapter {
                         if (retturn == 1 && i == indexBott) {
                             points++;
                             indexBott++;
+                            piano.play();
                         } else if (retturn == 1) {
                             //end type 1
                             columns.get( indexBott ).error();
@@ -154,6 +159,8 @@ public class MainClass extends ApplicationAdapter {
         add();
 
         state = 0;
+
+        piano.reset();
     }
 
     private void close(int opt){
@@ -171,5 +178,6 @@ public class MainClass extends ApplicationAdapter {
 		shapeRenderer.dispose();
 		batch.dispose();
 		texStart.dispose();
+		piano.dispose();
 	}
 }
