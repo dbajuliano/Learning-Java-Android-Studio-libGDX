@@ -5,11 +5,11 @@ import com.badlogic.gdx.graphics.Color;
 
 /**
  * Created by julianotech on 12/02/2018.
- * This Class defines the statics values for screen, color, size, and tile
+ * This Class defines the statics values for screen, color, size, and tiles
  */
 
 public class Cons {
-    public static Color green = new Color(0,0.4f,0,1);
+    public static Color green = new Color(0,0,0,0);
 
     public static int screenx = Gdx.graphics.getWidth();
     public static int screeny = Gdx.graphics.getHeight();
