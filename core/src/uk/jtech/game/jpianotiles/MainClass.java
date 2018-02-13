@@ -12,6 +12,7 @@ import static uk.jtech.game.jpianotiles.Cons.*;
 
 /**
  * Created by julianotech on 12/02/2018.
+ * Code from the course developing android game with libGDX by Daniel Ciolfi.
  * This is the main class of the game clone Piano Tiles
  */
 
@@ -69,6 +70,7 @@ public class MainClass extends ApplicationAdapter {
 
             for (int i=0; i < columns.size;i++) {
                 int retturn = columns.get( i ).update( deltaTime );
+                columns.get( i ).anim( deltaTime )  ;
                 if (retturn != 0){
                     if (retturn == 1){
                         columns.removeIndex( i );
@@ -80,6 +82,11 @@ public class MainClass extends ApplicationAdapter {
                     }
                 }
             }
+        }else if (state == 2){
+	        for (Column f:columns){
+	            f.anim( deltaTime );
+            }
+
         }
     }
 
@@ -87,7 +94,9 @@ public class MainClass extends ApplicationAdapter {
 	    if (Gdx.input.justTouched()){
 	        int x = Gdx.input.getX();
 	        int y = screeny - Gdx.input.getY();
-	        if (state==0)state =1;
+	        if (state==0){
+	            state =1;
+            }
 	        if (state==1) {
                 for (int i = 0; i < columns.size; i++) {
                     int retturn = columns.get( i ).touch( x, y );
@@ -97,6 +106,7 @@ public class MainClass extends ApplicationAdapter {
                             indexBott++;
                         } else if (retturn == 1) {
                             //end type 1
+                            columns.get( indexBott ).error();
                             close( 0 );
                         } else {
                             // end type 2
@@ -106,7 +116,7 @@ public class MainClass extends ApplicationAdapter {
                     }
                 }
             }
-            if (state==2)start();
+            else if (state==2)start();
         }
 
     }
