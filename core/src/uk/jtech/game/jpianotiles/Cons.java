@@ -11,8 +11,8 @@ import com.badlogic.gdx.graphics.Color;
 
 public class Cons {
     public static Color green = new Color(0,0,0,0);
-    public static Color correct = new Color(0,1,0,0);
-    public static Color incorrect = new Color(1,0,0,0);
+    public static Color correct = new Color(0.650f,0.990f,0.600f,0);
+    public static Color incorrect = new Color(0.70f,0.280f,0.300f,0);
 
     public static int screenx = Gdx.graphics.getWidth();
     public static int screeny = Gdx.graphics.getHeight();

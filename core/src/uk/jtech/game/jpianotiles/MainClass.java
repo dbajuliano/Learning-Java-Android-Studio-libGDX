@@ -3,6 +3,8 @@ package uk.jtech.game.jpianotiles;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 
@@ -20,6 +22,8 @@ public class MainClass extends ApplicationAdapter {
 
 	private ShapeRenderer shapeRenderer;
 
+	private SpriteBatch batch;
+
 	private Array<Column> columns;
 
 	private  float totalTime;
@@ -32,14 +36,20 @@ public class MainClass extends ApplicationAdapter {
 
 	private int state;
 
+	private Texture texStart;
+
 	@Override
 	public void create () {
 		shapeRenderer = new ShapeRenderer(  );
 		shapeRenderer.setAutoShapeType( true );
 
+        batch = new SpriteBatch( );
+
 		columns = new Array<Column>();
 
 		rand = new Random();
+
+		texStart = new Texture("play.png"  );
 
 		start();
 	}
@@ -60,6 +70,12 @@ public class MainClass extends ApplicationAdapter {
 		}
 
 		shapeRenderer.end();
+
+        if (state==0){
+            batch.begin();
+            batch.draw( texStart, 0, tileHeight/4, screenx, tileHeight/2 );
+            batch.end();
+        }
 	}
 
 	private void update(float deltaTime) {
@@ -153,5 +169,7 @@ public class MainClass extends ApplicationAdapter {
 	@Override
 	public void dispose () {
 		shapeRenderer.dispose();
+		batch.dispose();
+		texStart.dispose();
 	}
 }
