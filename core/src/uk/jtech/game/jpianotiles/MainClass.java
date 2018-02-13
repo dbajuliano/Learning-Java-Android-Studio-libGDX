@@ -51,7 +51,7 @@ public class MainClass extends ApplicationAdapter {
 
 		rand = new Random();
 
-		texStart = new Texture("play.png"  );
+		texStart = new Texture("play.gif"  );
 
 		piano = new Piano( "christimas" );
 
