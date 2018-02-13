@@ -2,9 +2,13 @@ package uk.jtech.game.jpianotiles;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 
@@ -40,6 +44,10 @@ public class MainClass extends ApplicationAdapter {
 
 	private Piano piano;
 
+	private BitmapFont font;
+
+	private GlyphLayout glyphLayout;
+
 	@Override
 	public void create () {
 		shapeRenderer = new ShapeRenderer(  );
@@ -54,6 +62,16 @@ public class MainClass extends ApplicationAdapter {
 		texStart = new Texture("play.gif"  );
 
 		piano = new Piano( "christimas" );
+
+		glyphLayout = new GlyphLayout(  );
+
+        FreeTypeFontGenerator.setMaxTextureSize( 2048 );
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator( Gdx.files.internal( "font.ttf" ) );
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = (int)(0.12f*screeny);
+        parameter.color = Color.CYAN;
+        font = generator.generateFont( parameter );
+        generator.dispose();
 
 		start();
 	}
@@ -75,11 +93,17 @@ public class MainClass extends ApplicationAdapter {
 
 		shapeRenderer.end();
 
-        if (state==0){
+
             batch.begin();
-            batch.draw( texStart, 0, tileHeight/4, screenx, tileHeight/2 );
+
+           if (state==0) batch.draw( texStart, 0, tileHeight/4, screenx, tileHeight/2 );
+
+           font.draw( batch, String.valueOf( points ), 0, screeny );
+        font.draw( batch, String.format( "%.3f", curSpeed/tileHeight ),
+                screenx - getWidth( font, String.format( "%.3f", curSpeed/tileHeight )), screeny );
+
             batch.end();
-        }
+
 	}
 
 	private void update(float deltaTime) {
@@ -160,6 +184,8 @@ public class MainClass extends ApplicationAdapter {
 
         state = 0;
 
+        curSpeed = 0;
+
         piano.reset();
     }
 
@@ -172,7 +198,14 @@ public class MainClass extends ApplicationAdapter {
             }
         }
     }
-	
+
+
+    private float getWidth(BitmapFont fontt, String text){
+        glyphLayout.reset();
+        glyphLayout.setText( fontt, text );
+        return glyphLayout.width;
+    }
+
 	@Override
 	public void dispose () {
 		shapeRenderer.dispose();
