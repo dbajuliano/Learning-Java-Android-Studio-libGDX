@@ -12,9 +12,14 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.Locale;
 import java.util.Random;
 
-import static uk.jtech.game.jpianotiles.Cons.*;
+import static uk.jtech.game.jpianotiles.Cons.curSpeed;
+import static uk.jtech.game.jpianotiles.Cons.screenx;
+import static uk.jtech.game.jpianotiles.Cons.screeny;
+import static uk.jtech.game.jpianotiles.Cons.startSpeed;
+import static uk.jtech.game.jpianotiles.Cons.tileHeight;
 
 /**
  * Created by julianotech on 12/02/2018.
@@ -24,124 +29,124 @@ import static uk.jtech.game.jpianotiles.Cons.*;
 
 public class MainClass extends ApplicationAdapter {
 
-	private ShapeRenderer shapeRenderer;
+    private ShapeRenderer shapeRenderer;
 
-	private SpriteBatch batch;
+    private SpriteBatch batch;
 
-	private Array<Column> columns;
+    private Array<Column> columns;
 
-	private  float totalTime;
+    private float totalTime;
 
-	private int indexBott;
+    private int indexBott;
 
-	private int points;
+    private int points;
 
-	private Random rand;
+    private Random rand;
 
-	private int state;
+    private int state;
 
-	private Texture texStart;
+    private Texture texStart;
 
-	private Piano piano;
+    private Piano piano;
 
-	private BitmapFont font;
+    private BitmapFont font;
+    private GlyphLayout glyphLayout;
 
-	private GlyphLayout glyphLayout;
-
-	@Override
-	public void create () {
-		shapeRenderer = new ShapeRenderer(  );
-		shapeRenderer.setAutoShapeType( true );
-
-        batch = new SpriteBatch( );
-
-		columns = new Array<Column>();
-
-		rand = new Random();
-
-		texStart = new Texture("play.gif"  );
-
-		piano = new Piano( "christimas" );
-
-		glyphLayout = new GlyphLayout(  );
+    @Override
+    public void create() {
+        shapeRenderer = new ShapeRenderer();
+        shapeRenderer.setAutoShapeType( true );
 
         FreeTypeFontGenerator.setMaxTextureSize( 2048 );
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator( Gdx.files.internal( "font.ttf" ) );
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = (int)(0.12f*screeny);
+        parameter.size = (int) (0.06f * screeny);
         parameter.color = Color.CYAN;
         font = generator.generateFont( parameter );
         generator.dispose();
 
-		start();
-	}
+        batch = new SpriteBatch();
 
-	@Override
-	public void render () {
-	    input();
+        columns = new Array<Column>();
 
-		update(Gdx.graphics.getDeltaTime());
+        rand = new Random();
 
-		Gdx.gl.glClearColor(1, 1, 1, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        texStart = new Texture( "play.gif" );
 
-		shapeRenderer.begin();
+        piano = new Piano( "christimas" );
 
-		for (Column f:columns){
-			f.draw( shapeRenderer );
-		}
+        glyphLayout = new GlyphLayout();
 
-		shapeRenderer.end();
+        start();
+    }
+
+    @Override
+    public void render() {
+        input();
+
+        update( Gdx.graphics.getDeltaTime() );
+
+        Gdx.gl.glClearColor( 1, 1, 1, 1 );
+        Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
+
+        shapeRenderer.begin();
+
+        for (Column c : columns) {
+            c.draw( shapeRenderer );
+        }
+
+        shapeRenderer.end();
 
 
-            batch.begin();
+        batch.begin();
 
-           if (state==0) batch.draw( texStart, 0, tileHeight/4, screenx, tileHeight/2 );
+        if (state == 0) batch.draw( texStart, 0, tileHeight / 4, screenx, tileHeight / 2 );
 
-           font.draw( batch, String.valueOf( points ), 0, screeny );
-        font.draw( batch, String.format( "%.3f", curSpeed/tileHeight ),
-                screenx - getWidth( font, String.format( "%.3f", curSpeed/tileHeight )), screeny );
+        font.draw( batch, String.valueOf( points ), 0, screeny );
+        font.draw( batch, String.format( Locale.getDefault(), "%.3f", curSpeed / tileHeight ),
+                screenx - getWidth( font, String.format( Locale.getDefault(), "%.3f", curSpeed / tileHeight ) ),
+                screeny );
 
-            batch.end();
+        batch.end();
 
-	}
+    }
 
-	private void update(float deltaTime) {
-	    if (state == 1){
+    private void update(float deltaTime) {
+        if (state == 1) {
             totalTime += deltaTime;
 
             curSpeed = startSpeed + tileHeight * totalTime / 8f;
 
-            for (int i=0; i < columns.size;i++) {
+            for (int i = 0; i < columns.size; i++) {
                 int retturn = columns.get( i ).update( deltaTime );
-                columns.get( i ).anim( deltaTime )  ;
-                if (retturn != 0){
-                    if (retturn == 1){
+                columns.get( i ).anim( deltaTime );
+                if (retturn != 0) {
+                    if (retturn == 1) {
                         columns.removeIndex( i );
                         i--;
                         indexBott--;
                         add();
-                    }else if (retturn == 2){
-                        close(1);
+                    } else if (retturn == 2) {
+                        close( 1 );
                     }
                 }
             }
-        }else if (state == 2){
-	        for (Column f:columns){
-	            f.anim( deltaTime );
+        } else if (state == 2) {
+            for (Column c : columns) {
+                c.anim( deltaTime );
             }
 
         }
     }
 
-		private void input(){
-	    if (Gdx.input.justTouched()){
-	        int x = Gdx.input.getX();
-	        int y = screeny - Gdx.input.getY();
-	        if (state==0){
-	            state =1;
+    private void input() {
+        if (Gdx.input.justTouched()) {
+            int x = Gdx.input.getX();
+            int y = screeny - Gdx.input.getY();
+            if (state == 0) {
+                state = 1;
             }
-	        if (state==1) {
+            if (state == 1) {
                 for (int i = 0; i < columns.size; i++) {
                     int retturn = columns.get( i ).touch( x, y );
                     if (retturn != 0) {
@@ -160,23 +165,23 @@ public class MainClass extends ApplicationAdapter {
                         break;
                     }
                 }
-            }
-            else if (state==2)start();
+            } else if (state == 2) start();
         }
 
     }
 
-    private void add(){
-		    float y = columns.get( columns.size-1).y + tileHeight;
-		    columns.add( new Column( y, rand.nextInt(4) ) );
+    private void add() {
+        float y = columns.get( columns.size - 1 ).y + tileHeight;
+        columns.add( new Column( y, rand.nextInt( 4 ) ) );
     }
 
-    private void start(){
+    private void start() {
         totalTime = 0;
         indexBott = 0;
         points = 0;
+
         columns.clear();
-        columns.add( new Column( tileHeight,rand.nextInt(4) ) );
+        columns.add( new Column( tileHeight, rand.nextInt( 4 ) ) );
         add();
         add();
         add();
@@ -189,28 +194,28 @@ public class MainClass extends ApplicationAdapter {
         piano.reset();
     }
 
-    private void close(int opt){
+    private void close(int opt) {
         Gdx.input.vibrate( 200 );
-        state=2;
-        if (opt == 1 ){
-            for (Column f:columns){
-                f.y += tileHeight;
+        state = 2;
+        if (opt == 1) {
+            for (Column c : columns) {
+                c.y += tileHeight;
             }
         }
     }
 
 
-    private float getWidth(BitmapFont fontt, String text){
+    private float getWidth(BitmapFont fontt, String text) {
         glyphLayout.reset();
         glyphLayout.setText( fontt, text );
         return glyphLayout.width;
     }
 
-	@Override
-	public void dispose () {
-		shapeRenderer.dispose();
-		batch.dispose();
-		texStart.dispose();
-		piano.dispose();
-	}
+    @Override
+    public void dispose() {
+        shapeRenderer.dispose();
+        batch.dispose();
+        texStart.dispose();
+        piano.dispose();
+    }
 }

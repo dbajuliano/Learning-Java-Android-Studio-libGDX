@@ -35,20 +35,20 @@ public class Piano {
         }
     }
 
-    public void play(){
-        sounds.get( notes.get(index) ).play();
+    public void play() {
+        sounds.get( notes.get( index ) ).play();
         index++;
-        if (index == notes.size){
-            index =0 ;
+        if (index == notes.size) {
+            index = 0;
         }
     }
 
-    public void reset(){
+    public void reset() {
         index = 0;
     }
 
-    public void dispose(){
-        for (String key: sounds.keySet()){
+    public void dispose() {
+        for (String key : sounds.keySet()) {
             sounds.get( key ).dispose();
         }
     }

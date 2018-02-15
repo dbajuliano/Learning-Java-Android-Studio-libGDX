@@ -2,7 +2,13 @@ package uk.jtech.game.jpianotiles;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import static uk.jtech.game.jpianotiles.Cons.*;
+
+import static uk.jtech.game.jpianotiles.Cons.correctColor;
+import static uk.jtech.game.jpianotiles.Cons.curSpeed;
+import static uk.jtech.game.jpianotiles.Cons.green;
+import static uk.jtech.game.jpianotiles.Cons.incorrectColor;
+import static uk.jtech.game.jpianotiles.Cons.tileHeight;
+import static uk.jtech.game.jpianotiles.Cons.tileWidth;
 
 /**
  * Created by julianotech on 12/02/2018.
@@ -23,7 +29,7 @@ public class Column {
 
     private float anim;
 
-    public Column (float y, int correct){
+    public Column(float y, int correct) {
         this.y = y;
         this.correct = correct;
         ok = false;
@@ -31,46 +37,47 @@ public class Column {
         anim = 0;
     }
 
-    public void draw(ShapeRenderer shapeRenderer){
-        shapeRenderer.set(ShapeRenderer.ShapeType.Filled);
-        shapeRenderer.setColor(green);
+    public void draw(ShapeRenderer shapeRenderer) {
+        shapeRenderer.set( ShapeRenderer.ShapeType.Filled );
+        shapeRenderer.setColor( green );
 
-        shapeRenderer.rect(correct*tileWidth,y, tileWidth, tileHeight);
-        if (bye){
-            if (ok){
-                shapeRenderer.setColor( Cons.correct );
-            }else{
-                shapeRenderer.setColor( incorrect );
+        shapeRenderer.rect( correct * tileWidth, y, tileWidth, tileHeight );
+
+        if (bye) {
+            if (ok) {
+                shapeRenderer.setColor( correctColor );
+            } else {
+                shapeRenderer.setColor( incorrectColor );
             }
 
-            shapeRenderer.rect(pos * tileWidth + (tileWidth - anim * tileWidth)/2f,
-                    y + (tileHeight - anim * tileHeight)/2, anim * tileWidth,
-                    anim * tileHeight);
+            shapeRenderer.rect( pos * tileWidth + (tileWidth - anim * tileWidth) / 2f,
+                    y + (tileHeight - anim * tileHeight) / 2,
+                    anim * tileWidth, anim * tileHeight );
         }
 
-        shapeRenderer.set(ShapeRenderer.ShapeType.Line);
-        shapeRenderer.setColor( Color.GRAY);
+        shapeRenderer.set( ShapeRenderer.ShapeType.Line );
+        shapeRenderer.setColor( Color.GRAY );
 
-        for (int i =0; i<=3;i++){
-            shapeRenderer.rect( i*tileWidth, y, tileWidth, tileHeight );
+        for (int i = 0; i <= 3; i++) {
+            shapeRenderer.rect( i * tileWidth, y, tileWidth, tileHeight );
         }
     }
 
-    public void anim(float time){
-        if (bye && anim < 1){
-            anim += 5*time;
-            if (anim >= 1){
+    public void anim(float time) {
+        if (bye && anim < 1) {
+            anim += 5 * time;
+            if (anim >= 1) {
                 anim = 1;
             }
         }
     }
 
-    public int update(float time){
-        y -= time*curSpeed;
-        if (y< 0 - tileHeight){
-            if (ok){
+    public int update(float time) {
+        y -= time * curSpeed;
+        if (y < 0 - tileHeight) {
+            if (ok) {
                 return 1;
-            }else {
+            } else {
                 error();
                 return 2;
             }
@@ -78,14 +85,14 @@ public class Column {
         return 0;
     }
 
-    public int touch(int tx, int ty){
-        if (ty >= y && ty <= y +tileHeight){
-            pos = tx/tileWidth;
-            if (pos == correct){
+    public int touch(int tx, int ty) {
+        if (ty >= y && ty <= y + tileHeight) {
+            pos = tx / tileWidth;
+            if (pos == correct) {
                 ok = true;
                 bye = true;
                 return 1;
-            }else{
+            } else {
                 ok = false;
                 bye = true;
                 return 2;
@@ -94,7 +101,7 @@ public class Column {
         return 0;
     }
 
-    public void error(){
+    public void error() {
         bye = true;
         pos = correct;
     }
