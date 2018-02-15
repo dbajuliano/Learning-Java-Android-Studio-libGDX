@@ -25,6 +25,8 @@ public class MainScreen implements Screen {
 
     private float time;
 
+    private boolean hold;
+
     public MainScreen(Game game) {
         this.game = game;
     }
@@ -42,11 +44,15 @@ public class MainScreen implements Screen {
 
         time = 0f;
 
+        hold = false;
+
     }
 
     @Override
     public void render(float delta) {
-        time +=delta;
+        time += delta;
+
+        input();
 
         batch.setProjectionMatrix( viewport.getCamera().combined );
 
@@ -55,10 +61,19 @@ public class MainScreen implements Screen {
 
         batch.begin();
 
-        batch.draw( bg[(int) time%2], 0, 0, 1000, 1500 );
+        batch.draw( bg[(int) time % 2], 0, 0, 1000, 1500 );
 
         batch.end();
 
+    }
+
+    private void input() {
+        if (Gdx.input.isTouched()) {
+            hold = true;
+        } else if (!Gdx.input.isTouched() && hold) {
+            hold = false;
+            game.setScreen( new GameScreen( game ) );
+        }
     }
 
     @Override
