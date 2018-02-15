@@ -1,6 +1,6 @@
 # JPianoTiles
 
-This is my first android project, it is a single-player mobile game used to learn development with Android Studio, libGDX, Git, GitHub and Genymotion.
+This is my first android project, it is a single-player mobile game used to learn how to develop with Android Studio, libGDX, Git, GitHub and Genymotion.
 
 # Motivation
 
