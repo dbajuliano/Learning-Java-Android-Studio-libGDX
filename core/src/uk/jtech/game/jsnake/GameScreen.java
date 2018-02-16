@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.input.GestureDetector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -17,7 +18,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  * Code from the course developing android game with libGDX by Daniel Ciolfi.
  */
 
-public class GameScreen implements Screen {
+public class GameScreen implements Screen, GestureDetector.GestureListener {
 
     private Game game;
 
@@ -35,6 +36,8 @@ public class GameScreen implements Screen {
 
     private float timeToMove;
 
+    private Vector2 touch;
+
     public GameScreen(Game game) {
         this.game = game;
     }
@@ -49,6 +52,10 @@ public class GameScreen implements Screen {
         genTexture();
 
         init();
+
+        touch = new Vector2();
+
+        Gdx.input.setInputProcessor( new GestureDetector( this ) );
 
     }
 
@@ -132,6 +139,27 @@ public class GameScreen implements Screen {
         }
     }
 
+    @Override
+    public boolean fling(float velocityX, float velocityY, int button) {
+        viewport.unproject( touch.set( velocityX, velocityY ) );
+        Gdx.app.log( "Log", velocityX + " " + velocityY + " " + touch.x + " " + touch.y );
+
+        if (Math.abs( touch.x ) > Math.abs( touch.y )) touch.y = 0;
+        else touch.x = 0;
+
+        if (touch.x > 50 && direction != 4) {
+            direction = 2;
+        } else if (touch.y > 50 && direction != 3) {
+            direction = 1;
+        } else if (touch.x < -50 && direction != 2) {
+            direction = 4;
+        } else if (touch.y > -50 && direction != 1) {
+            direction = 3;
+        }
+
+        return true;
+    }
+
     private void init() {
         body = new boolean[20][20];
         parts = new Array<Vector2>();
@@ -184,6 +212,46 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
+
+    }
+
+    @Override
+    public boolean touchDown(float x, float y, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean tap(float x, float y, int count, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean longPress(float x, float y) {
+        return false;
+    }
+
+    @Override
+    public boolean pan(float x, float y, float deltaX, float deltaY) {
+        return false;
+    }
+
+    @Override
+    public boolean panStop(float x, float y, int pointer, int button) {
+        return false;
+    }
+
+    @Override
+    public boolean zoom(float initialDistance, float distance) {
+        return false;
+    }
+
+    @Override
+    public boolean pinch(Vector2 initialPointer1, Vector2 initialPointer2, Vector2 pointer1, Vector2 pointer2) {
+        return false;
+    }
+
+    @Override
+    public void pinchStop() {
 
     }
 }
