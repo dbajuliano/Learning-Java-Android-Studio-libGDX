@@ -136,6 +136,16 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
                 return;
             }
 
+            for (int j = 0; j < points.size; j++) {
+                if (points.get( j ).x == x1 && points.get( j ).y == y1) {
+                    points.removeIndex( j );
+                    parts.insert( 0, new Vector2( x1, y1 ) );
+                    body[x1][y1] = true;
+                    body[x2][y2] = true;
+                    return;
+                }
+            }
+
             parts.get( 0 ).set( x1, y1 );
             body[x1][y1] = true;
 
@@ -205,20 +215,20 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
     }
 
     private void genTexture() {
-        Pixmap pixmap = new Pixmap( 64, 64, Pixmap.Format.RGB888 );
+        Pixmap pixmap = new Pixmap( 64, 64, Pixmap.Format.RGBA8888 );
         pixmap.setColor( 1f, 1f, 1f, 1f );
         pixmap.fillRectangle( 0, 0, 64, 64 );
         bodyTexture = new Texture( pixmap );
         pixmap.dispose();
 
-        Pixmap pixmap2 = new Pixmap( 64, 64, Pixmap.Format.RGB888 );
+        Pixmap pixmap2 = new Pixmap( 64, 64, Pixmap.Format.RGBA8888 );
         pixmap2.setColor( 0.29f, 0.784f, 0.373f, 0.5f );
         pixmap2.fillRectangle( 0, 0, 64, 64 );
         bgTexture = new Texture( pixmap2 );
         pixmap2.dispose();
 
-        Pixmap pixmap3 = new Pixmap( 64, 64, Pixmap.Format.RGB888 );
-        pixmap3.setColor( 0.29f, 1f, 1f, 1f );
+        Pixmap pixmap3 = new Pixmap( 64, 64, Pixmap.Format.RGBA8888 );
+        pixmap3.setColor( 1f, 1f, 1f, 1f );
         pixmap3.fillCircle( 32, 32, 32 );
         pointTexture = new Texture( pixmap3 );
         pixmap3.dispose();
