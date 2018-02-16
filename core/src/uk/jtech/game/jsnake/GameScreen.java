@@ -13,6 +13,8 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import java.util.Random;
+
 /**
  * Created by jtech on 15/02/2018.
  * Code from the course developing android game with libGDX by Daniel Ciolfi.
@@ -38,6 +40,12 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 
     private Vector2 touch;
 
+    private Array<Vector2> points;
+
+    private float timeToNext;
+
+    private Random rand;
+
     public GameScreen(Game game) {
         this.game = game;
     }
@@ -54,6 +62,8 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
         init();
 
         touch = new Vector2();
+
+        rand = new Random();
 
         Gdx.input.setInputProcessor( new GestureDetector( this ) );
 
@@ -74,6 +84,10 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 
         for (Vector2 part : parts) {
             batch.draw( bodyTexture, part.x * 5, part.y * 5, 5, 5 );
+        }
+
+        for (Vector2 point : points) {
+            batch.draw( pointTexture, point.x * 5, point.y * 5, 5, 5 );
         }
 
         batch.end();
@@ -137,6 +151,17 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
                 y2 = y1;
             }
         }
+
+        timeToNext -= delta;
+
+        if (timeToNext <= 0) {
+            int x = rand.nextInt( 20 );
+            int y = rand.nextInt( 20 );
+            if (!body[x][y]) {
+                points.add( new Vector2( x, y ) );
+                timeToNext = 5f;
+            }
+        }
     }
 
     @Override
@@ -173,6 +198,10 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
         direction = 2;
 
         timeToMove = 0.4f;
+
+        points = new Array<Vector2>();
+
+        timeToNext = 3;
     }
 
     private void genTexture() {
