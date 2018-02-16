@@ -33,6 +33,8 @@ public class GameScreen implements Screen {
 
     private int direction; //1=up, 2=right, 3=down, 4=left
 
+    private float timeToMove;
+
     public GameScreen(Game game) {
         this.game = game;
     }
@@ -52,6 +54,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
+        update( delta );
+
         batch.setProjectionMatrix( viewport.getCamera().combined );
 
         Gdx.gl.glClearColor( 0.29f, 0.894f, 0.373f, 1 );
@@ -61,8 +65,8 @@ public class GameScreen implements Screen {
 
         batch.draw( bgTexture, 0, 0, 100, 100 );
 
-        for (Vector2 part:parts){
-            batch.draw( bodyTexture, part.x*5 , part.y*5, 5, 5);
+        for (Vector2 part : parts) {
+            batch.draw( bodyTexture, part.x * 5, part.y * 5, 5, 5 );
         }
 
         batch.end();
@@ -72,6 +76,60 @@ public class GameScreen implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update( width, height, true );
+    }
+
+    private void update(float delta) {
+        timeToMove -= delta;
+        if (timeToMove <= delta) {
+            timeToMove = 0.4f;
+
+            Gdx.app.log( "Log", "move" );
+
+            int x1, x2, y1, y2;
+
+            x1 = (int) parts.get( 0 ).x;
+            y1 = (int) parts.get( 0 ).y;
+
+            body[x1][y1] = false;
+
+            x2 = x1;
+            y2 = y1;
+
+            switch (direction) {
+                case 1:
+                    y1++;
+                    break;
+                case 2:
+                    x1++;
+                    break;
+                case 3:
+                    y1--;
+                    break;
+                case 4:
+                    x1--;
+                    break;
+            }
+
+            if (x1 < 0 || y1 < 0 || x1 > 19 || y1 > 19 || body[x1][y1]) {
+                //you lose
+                return;
+            }
+
+            parts.get( 0 ).set( x1, y1 );
+            body[x1][y1] = true;
+
+            for (int i = 1; i < parts.size; i++) {
+                x1 = (int) parts.get( i ).x;
+                y1 = (int) parts.get( i ).y;
+                body[x1][y1] = false;
+
+                parts.get( i ).set( x2, y2 );
+                body[x2][y2] = true;
+
+                x2 = x1;
+                y2 = y1;
+            }
+        }
     }
 
     private void init() {
@@ -85,6 +143,8 @@ public class GameScreen implements Screen {
         body[5][5] = true;
 
         direction = 2;
+
+        timeToMove = 0.4f;
     }
 
     private void genTexture() {
