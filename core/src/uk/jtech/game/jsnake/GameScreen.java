@@ -46,6 +46,8 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 
     private Random rand;
 
+    private int state;
+
     public GameScreen(Game game) {
         this.game = game;
     }
@@ -100,76 +102,78 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
     }
 
     private void update(float delta) {
-        timeToMove -= delta;
-        if (timeToMove <= delta) {
-            timeToMove = 0.4f;
+        if (state == 0) {
+            timeToMove -= delta;
+            if (timeToMove <= delta) {
+                timeToMove = 0.4f;
 
-            Gdx.app.log( "Log", "move" );
+                Gdx.app.log( "Log", "move" );
 
-            int x1, x2, y1, y2;
+                int x1, x2, y1, y2;
 
-            x1 = (int) parts.get( 0 ).x;
-            y1 = (int) parts.get( 0 ).y;
+                x1 = (int) parts.get( 0 ).x;
+                y1 = (int) parts.get( 0 ).y;
 
-            body[x1][y1] = false;
-
-            x2 = x1;
-            y2 = y1;
-
-            switch (direction) {
-                case 1:
-                    y1++;
-                    break;
-                case 2:
-                    x1++;
-                    break;
-                case 3:
-                    y1--;
-                    break;
-                case 4:
-                    x1--;
-                    break;
-            }
-
-            if (x1 < 0 || y1 < 0 || x1 > 19 || y1 > 19 || body[x1][y1]) {
-                //you lose
-                return;
-            }
-
-            for (int j = 0; j < points.size; j++) {
-                if (points.get( j ).x == x1 && points.get( j ).y == y1) {
-                    points.removeIndex( j );
-                    parts.insert( 0, new Vector2( x1, y1 ) );
-                    body[x1][y1] = true;
-                    body[x2][y2] = true;
-                    return;
-                }
-            }
-
-            parts.get( 0 ).set( x1, y1 );
-            body[x1][y1] = true;
-
-            for (int i = 1; i < parts.size; i++) {
-                x1 = (int) parts.get( i ).x;
-                y1 = (int) parts.get( i ).y;
                 body[x1][y1] = false;
-
-                parts.get( i ).set( x2, y2 );
-                body[x2][y2] = true;
 
                 x2 = x1;
                 y2 = y1;
+
+                switch (direction) {
+                    case 1:
+                        y1++;
+                        break;
+                    case 2:
+                        x1++;
+                        break;
+                    case 3:
+                        y1--;
+                        break;
+                    case 4:
+                        x1--;
+                        break;
+                }
+
+                if (x1 < 0 || y1 < 0 || x1 > 19 || y1 > 19 || body[x1][y1]) {
+                    state = 1;
+                    return;
+                }
+
+                for (int j = 0; j < points.size; j++) {
+                    if (points.get( j ).x == x1 && points.get( j ).y == y1) {
+                        points.removeIndex( j );
+                        parts.insert( 0, new Vector2( x1, y1 ) );
+                        body[x1][y1] = true;
+                        body[x2][y2] = true;
+                        return;
+                    }
+                }
+
+                parts.get( 0 ).set( x1, y1 );
+                body[x1][y1] = true;
+
+                for (int i = 1; i < parts.size; i++) {
+                    x1 = (int) parts.get( i ).x;
+                    y1 = (int) parts.get( i ).y;
+                    body[x1][y1] = false;
+
+                    parts.get( i ).set( x2, y2 );
+                    body[x2][y2] = true;
+
+                    x2 = x1;
+                    y2 = y1;
+                }
             }
-        }
 
-        timeToNext -= delta;
+            timeToNext -= delta;
 
-        if (timeToNext <= 0) {
-            int x = rand.nextInt( 20 );
-            int y = rand.nextInt( 20 );
-            if (!body[x][y]) {
-                points.add( new Vector2( x, y ) );
-                timeToNext = 5f;
+            if (timeToNext <= 0) {
+                int x = rand.nextInt( 20 );
+                int y = rand.nextInt( 20 );
+                if (!body[x][y]) {
+                    points.add( new Vector2( x, y ) );
+                    timeToNext = 5f;
+                }
             }
         }
     }
@@ -179,19 +183,26 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
         viewport.unproject( touch.set( velocityX, velocityY ) );
         Gdx.app.log( "Log", velocityX + " " + velocityY + " " + touch.x + " " + touch.y );
 
-        if (Math.abs( touch.x ) > Math.abs( touch.y )) touch.y = 0;
-        else touch.x = 0;
+        if (state == 0) {
+            if (Math.abs( touch.x ) > Math.abs( touch.y )) touch.y = 0;
+            else touch.x = 0;
 
-        if (touch.x > 50 && direction != 4) {
-            direction = 2;
-        } else if (touch.y > 50 && direction != 3) {
-            direction = 1;
-        } else if (touch.x < -50 && direction != 2) {
-            direction = 4;
-        } else if (touch.y > -50 && direction != 1) {
-            direction = 3;
+            if (touch.x > 50 && direction != 4) {
+                direction = 2;
+            } else if (touch.y > 50 && direction != 3) {
+                direction = 1;
+            } else if (touch.x < -50 && direction != 2) {
+                direction = 4;
+            } else if (touch.y > -50 && direction != 1) {
+                direction = 3;
+            }
         }
+        return true;
+    }
 
+    @Override
+    public boolean tap(float x, float y, int count, int button) {
+        if (state == 1) game.setScreen( new MainScreen( game ) );
         return true;
     }
 
@@ -211,7 +222,9 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 
         points = new Array<Vector2>();
 
-        timeToNext = 3;
+        timeToNext = 3f;
+
+        state = 0;
     }
 
     private void genTexture() {
@@ -256,11 +269,6 @@ public class GameScreen implements Screen, GestureDetector.GestureListener {
 
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
-        return false;
-    }
-
-    @Override
-    public boolean tap(float x, float y, int count, int button) {
         return false;
     }
 

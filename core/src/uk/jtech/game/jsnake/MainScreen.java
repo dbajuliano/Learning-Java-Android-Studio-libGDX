@@ -46,6 +46,8 @@ public class MainScreen implements Screen {
 
         hold = false;
 
+        Gdx.input.setInputProcessor( null );
+
     }
 
     @Override
