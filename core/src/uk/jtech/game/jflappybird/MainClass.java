@@ -29,6 +29,7 @@ public class MainClass extends ApplicationAdapter {
 
     private float pipetime;
 
+    private int state = 0; //0=stopped, 1=running, 3=lose, 4=restart button
 
     @Override
     public void create() {
@@ -68,38 +69,54 @@ public class MainClass extends ApplicationAdapter {
     }
 
     private void update(float time) {
-        background.update( time );
+        if (state == 1) {
+            background.update( time );
 
-        for (int i = 0; i < pipes.size(); i++) {
-            if (pipes.get( i ).update( time ) == 1) {
-                pipes.remove( i );
-                i--;
+            for (int i = 0; i < pipes.size(); i++) {
+                if (pipes.get( i ).update( time ) == 1) {
+                    pipes.remove( i );
+                    i--;
+                }
+            }
+
+            pipetime -= time;
+            if (pipetime <= 0) {
+                Random random = new Random();
+                int pos = random.nextInt( posMax );
+                pos -= posMax / 2;
+                pipes.add( new Pipe( screenx, screeny / 2 + pos + gap / 2, true ) );
+                pipes.add( new Pipe( screenx, screeny / 2 + pos - gap / 2, false ) );
+                pipetime = pipesTime;
+            }
+
+            for (Pipe p : pipes) {
+                if (Intersector.overlaps( bird.body, p.body )) {
+                    Gdx.app.log( "Log", "Crash" );
+                    bird.lose();
+                    state = 2;
+                }
             }
         }
 
-        pipetime -= time;
-        if (pipetime <= 0) {
-            Random random = new Random();
-            int pos = random.nextInt( posMax );
-            pos -= posMax / 2;
-            pipes.add( new Pipe( screenx, screeny / 2 + pos + gap / 2, true ) );
-            pipes.add( new Pipe( screenx, screeny / 2 + pos - gap / 2, false ) );
-            pipetime = pipesTime;
-        }
-
-        for (Pipe p : pipes) {
-            if (Intersector.overlaps( bird.body, p.body )) {
-                Gdx.app.log( "Log", "Crash" );
-                bird.lose();
+        if (state == 1 || state == 2) {
+            if (bird.update( time ) == 1) {
+                state = 3;
             }
         }
-
-        bird.update( time );
     }
 
     private void input() {
         if (Gdx.input.justTouched()) {
-            bird.impulse();
+            if (state == 0) {
+                state = 1;
+            } else if (state == 1) {
+                bird.impulse();
+            } else if (state == 3) {
+                state = 1;
+                bird.restart( birdinix, screeny / 2 );
+                pipes.clear();
+                pipetime = pipesTime;
+            }
         }
     }
 

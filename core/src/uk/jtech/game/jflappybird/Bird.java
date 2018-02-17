@@ -40,7 +40,7 @@ public class Bird {
                 body.radius * 2, body.radius * 2 );
     }
 
-    public void update(float time) {
+    public int update(float time) {
         auxFrames += 6 * time;
         body.x += speed.x * time;
         body.y += speed.y * time;
@@ -55,6 +55,11 @@ public class Bird {
             body.y = body.radius;
             speed.y = impulse;
         }
+
+        if (body.x +body.radius<=0){
+            return 1;
+        }
+        return 0;
     }
 
     public void impulse() {
