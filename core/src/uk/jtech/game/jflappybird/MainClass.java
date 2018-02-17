@@ -5,11 +5,16 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import static uk.jtech.game.jflappybird.Constants.birdinix;
+import static uk.jtech.game.jflappybird.Constants.screeny;
+
 public class MainClass extends ApplicationAdapter {
 
     private SpriteBatch batch;
 
     private Background background;
+
+    private Bird bird;
 
 
     @Override
@@ -18,13 +23,14 @@ public class MainClass extends ApplicationAdapter {
 
         background = new Background();
 
+        bird = new Bird( birdinix, screeny / 2 );
+
     }
 
     @Override
     public void render() {
         update(Gdx.graphics.getDeltaTime());
 
-        Gdx.gl.glClearColor( 1, 0, 0, 1 );
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
 
         batch.begin();
@@ -34,10 +40,14 @@ public class MainClass extends ApplicationAdapter {
 
     private void draw(){
         background.draw( batch );
+
+        bird.draw( batch );
     }
 
     private void update(float time){
         background.update( time );
+
+        bird.update( time );
     }
 
     @Override
