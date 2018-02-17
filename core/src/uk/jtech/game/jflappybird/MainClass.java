@@ -29,6 +29,8 @@ public class MainClass extends ApplicationAdapter {
 
     @Override
     public void render() {
+        input();
+
         update(Gdx.graphics.getDeltaTime());
 
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
@@ -50,10 +52,17 @@ public class MainClass extends ApplicationAdapter {
         bird.update( time );
     }
 
+    private void input() {
+        if (Gdx.input.justTouched()) {
+            bird.impulse();
+        }
+    }
+
     @Override
     public void dispose() {
         batch.dispose();
         background.dispose();
+        bird.dispose();
 
     }
 }
