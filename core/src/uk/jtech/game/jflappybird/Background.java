@@ -3,7 +3,9 @@ package uk.jtech.game.jflappybird;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import static uk.jtech.game.jflappybird.Constants.*;
+import static uk.jtech.game.jflappybird.Constants.pipespeedx;
+import static uk.jtech.game.jflappybird.Constants.screenx;
+import static uk.jtech.game.jflappybird.Constants.screeny;
 
 /**
  * Created by jtech on 17/02/2018.

@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 
 import static uk.jtech.game.jflappybird.Constants.birdrad;
 import static uk.jtech.game.jflappybird.Constants.impulse;
+import static uk.jtech.game.jflappybird.Constants.pipespeedx;
 import static uk.jtech.game.jflappybird.Constants.screeny;
 import static uk.jtech.game.jflappybird.Constants.speedRed;
 
@@ -64,5 +65,15 @@ public class Bird {
         for (int i = 0; i <= 5; i++) {
             frames[i].dispose();
         }
+    }
+
+    public void lose() {
+        speed.x = 2 * pipespeedx;
+        speed.y = 0;
+    }
+
+    public void restart(int posx, int posy){
+        body = new Circle( posx, posy, birdrad);
+        speed = new Vector2( 0,0 );
     }
 }

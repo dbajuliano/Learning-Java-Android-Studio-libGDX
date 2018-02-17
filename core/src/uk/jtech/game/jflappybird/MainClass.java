@@ -87,9 +87,10 @@ public class MainClass extends ApplicationAdapter {
             pipetime = pipesTime;
         }
 
-        for (Pipe p:pipes){
-            if(Intersector.overlaps( bird.body, p.body )){
+        for (Pipe p : pipes) {
+            if (Intersector.overlaps( bird.body, p.body )) {
                 Gdx.app.log( "Log", "Crash" );
+                bird.lose();
             }
         }
 
