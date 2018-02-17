@@ -19,4 +19,6 @@ public class Constants {
     public static float speedRed = screeny / 1.5f;
 
     public static float impulse = screeny / 5;
+
+    public static int pipew = (int) (0.2f * screenx);
 }

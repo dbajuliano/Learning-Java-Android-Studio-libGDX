@@ -5,6 +5,9 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static uk.jtech.game.jflappybird.Constants.birdinix;
 import static uk.jtech.game.jflappybird.Constants.screeny;
 
@@ -16,6 +19,8 @@ public class MainClass extends ApplicationAdapter {
 
     private Bird bird;
 
+    private List<Pipe> pipes;
+
 
     @Override
     public void create() {
@@ -25,13 +30,17 @@ public class MainClass extends ApplicationAdapter {
 
         bird = new Bird( birdinix, screeny / 2 );
 
+        pipes = new ArrayList<Pipe>();
+
+        pipes.add( new Pipe( 500, 500, true ) );
+
     }
 
     @Override
     public void render() {
         input();
 
-        update(Gdx.graphics.getDeltaTime());
+        update( Gdx.graphics.getDeltaTime() );
 
         Gdx.gl.glClear( GL20.GL_COLOR_BUFFER_BIT );
 
@@ -40,14 +49,25 @@ public class MainClass extends ApplicationAdapter {
         batch.end();
     }
 
-    private void draw(){
+    private void draw() {
         background.draw( batch );
+
+        for (Pipe p : pipes) {
+            p.draw( batch );
+        }
 
         bird.draw( batch );
     }
 
-    private void update(float time){
+    private void update(float time) {
         background.update( time );
+
+        for (int i = 0; i < pipes.size(); i++) {
+            if (pipes.get( i ).update( time ) == 1) {
+                pipes.remove( i );
+                i--;
+            }
+        }
 
         bird.update( time );
     }
@@ -61,8 +81,14 @@ public class MainClass extends ApplicationAdapter {
     @Override
     public void dispose() {
         batch.dispose();
+
         background.dispose();
+
         bird.dispose();
+
+        for (Pipe p : pipes) {
+            p.dispose();
+        }
 
     }
 }
