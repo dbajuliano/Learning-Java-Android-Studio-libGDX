@@ -15,7 +15,7 @@ import static uk.jtech.game.jflappybird.Constants.screeny;
 public class Pipe {
 
     private Texture tex;
-    private Rectangle body;
+    public Rectangle body;
 
     private boolean up;
 

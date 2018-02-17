@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Intersector;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,6 +85,12 @@ public class MainClass extends ApplicationAdapter {
             pipes.add( new Pipe( screenx, screeny / 2 + pos + gap / 2, true ) );
             pipes.add( new Pipe( screenx, screeny / 2 + pos - gap / 2, false ) );
             pipetime = pipesTime;
+        }
+
+        for (Pipe p:pipes){
+            if(Intersector.overlaps( bird.body, p.body )){
+                Gdx.app.log( "Log", "Crash" );
+            }
         }
 
         bird.update( time );
