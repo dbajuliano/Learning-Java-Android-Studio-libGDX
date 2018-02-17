@@ -21,4 +21,10 @@ public class Constants {
     public static float impulse = screeny / 5;
 
     public static int pipew = (int) (0.2f * screenx);
+
+    public static float pipesTime = 3f;
+
+    public static int posMax = (int) (0.7f * screeny);
+
+    public static int gap = (int) (0.2f * screeny);
 }

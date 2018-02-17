@@ -7,8 +7,13 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import static uk.jtech.game.jflappybird.Constants.birdinix;
+import static uk.jtech.game.jflappybird.Constants.gap;
+import static uk.jtech.game.jflappybird.Constants.pipesTime;
+import static uk.jtech.game.jflappybird.Constants.posMax;
+import static uk.jtech.game.jflappybird.Constants.screenx;
 import static uk.jtech.game.jflappybird.Constants.screeny;
 
 public class MainClass extends ApplicationAdapter {
@@ -21,6 +26,8 @@ public class MainClass extends ApplicationAdapter {
 
     private List<Pipe> pipes;
 
+    private float pipetime;
+
 
     @Override
     public void create() {
@@ -32,7 +39,7 @@ public class MainClass extends ApplicationAdapter {
 
         pipes = new ArrayList<Pipe>();
 
-        pipes.add( new Pipe( 500, 500, true ) );
+        pipetime = pipesTime;
 
     }
 
@@ -67,6 +74,16 @@ public class MainClass extends ApplicationAdapter {
                 pipes.remove( i );
                 i--;
             }
+        }
+
+        pipetime -= time;
+        if (pipetime <= 0) {
+            Random random = new Random();
+            int pos = random.nextInt( posMax );
+            pos -= posMax / 2;
+            pipes.add( new Pipe( screenx, screeny / 2 + pos + gap / 2, true ) );
+            pipes.add( new Pipe( screenx, screeny / 2 + pos - gap / 2, false ) );
+            pipetime = pipesTime;
         }
 
         bird.update( time );
