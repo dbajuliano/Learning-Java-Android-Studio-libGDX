@@ -37,4 +37,8 @@ public class Button {
                 butt.y <= y && butt.y + butt.getHeight() >= y;
         return high;
     }
+
+    public void dispose() {
+        texture.dispose();
+    }
 }

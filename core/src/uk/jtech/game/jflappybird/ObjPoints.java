@@ -15,6 +15,7 @@ public class ObjPoints {
     public Rectangle body;
 
     public ObjPoints(float posx, float posy) {
+
         body = new Rectangle( posx, posy, 10, gap );
     }
 

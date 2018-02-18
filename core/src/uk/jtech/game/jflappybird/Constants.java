@@ -17,7 +17,7 @@ public class Constants {
 
     public static int birdinix = (int) (0.2f * screenx);
 
-    public static float speedRed = screeny / 2.0f;
+    public static float speedRed = screeny / 1.5f;
 
     public static float impulse = screeny / 4.0f;
 
@@ -27,7 +27,7 @@ public class Constants {
 
     public static int posMax = (int) (0.7f * screeny);
 
-    public static int gap = (int) (0.2f * screeny);
+    public static int gap = (int) (0.22f * screeny);
 
     public static int buttSize = (int) (0.4f * screenx);
     public static int buttx = (int) (0.3f * screenx);

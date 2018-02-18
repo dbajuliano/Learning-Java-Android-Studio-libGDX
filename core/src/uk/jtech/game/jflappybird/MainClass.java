@@ -58,6 +58,8 @@ public class MainClass extends ApplicationAdapter {
     private Button buttStart;
     private Button buttRestart;
 
+    private Sounds sounds;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -82,6 +84,8 @@ public class MainClass extends ApplicationAdapter {
 
         buttStart = new Button( new Texture( "buttons/play.png" ), buttx, butty, buttSize );
         buttRestart = new Button( new Texture( "buttons/replay.png" ), buttx, butty, buttSize );
+
+        sounds = new Sounds();
     }
 
     @Override
@@ -149,17 +153,18 @@ public class MainClass extends ApplicationAdapter {
             for (Pipe p : pipes) {
                 if (Intersector.overlaps( bird.body, p.body )) {
                     Gdx.app.log( "Log", "Crash" );
+                    sounds.play( "hit" );
                     bird.lose();
                     state = 2;
                 }
             }
 
             boolean inter = false;
-
             for (ObjPoints o : objPoints) {
                 if (Intersector.overlaps( bird.body, o.body )) {
                     if (!goal) {
                         points++;
+                        sounds.play( "score" );
                         Gdx.app.log( "Log", String.valueOf( points ) );
                         goal = true;
                     }
@@ -184,6 +189,7 @@ public class MainClass extends ApplicationAdapter {
                 buttStart.verif( x, y );
             } else if (state == 1) {
                 bird.impulse();
+                sounds.play( "fly" );
             } else if (state == 3) {
                 buttRestart.verif( x, y );
             }
@@ -227,5 +233,9 @@ public class MainClass extends ApplicationAdapter {
         }
 
         font.dispose();
+        sounds.dispose();
+
+        buttStart.dispose();
+        buttRestart.dispose();
     }
 }
