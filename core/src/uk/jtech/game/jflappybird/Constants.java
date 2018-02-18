@@ -16,9 +16,9 @@ public class Constants {
 
     public static int birdinix = (int) (0.2f * screenx);
 
-    public static float speedRed = screeny / 1.5f;
+    public static float speedRed = screeny / 2.0f;
 
-    public static float impulse = screeny / 5;
+    public static float impulse = screeny / 4.5f;
 
     public static int pipew = (int) (0.2f * screenx);
 

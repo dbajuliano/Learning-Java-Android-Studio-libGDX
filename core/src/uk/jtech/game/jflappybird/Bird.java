@@ -56,7 +56,7 @@ public class Bird {
             speed.y = impulse;
         }
 
-        if (body.x +body.radius<=0){
+        if (body.x + body.radius <= 0) {
             return 1;
         }
         return 0;
@@ -77,8 +77,8 @@ public class Bird {
         speed.y = 0;
     }
 
-    public void restart(int posx, int posy){
-        body = new Circle( posx, posy, birdrad);
-        speed = new Vector2( 0,0 );
+    public void restart(int posx, int posy) {
+        body = new Circle( posx, posy, birdrad );
+        speed = new Vector2( 0, 0 );
     }
 }
