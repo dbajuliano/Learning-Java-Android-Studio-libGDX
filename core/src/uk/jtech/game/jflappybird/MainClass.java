@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -16,12 +17,20 @@ import java.util.Random;
 
 import static uk.jtech.game.jflappybird.Constants.birdinix;
 import static uk.jtech.game.jflappybird.Constants.birdrad;
+import static uk.jtech.game.jflappybird.Constants.buttSize;
+import static uk.jtech.game.jflappybird.Constants.buttx;
+import static uk.jtech.game.jflappybird.Constants.butty;
 import static uk.jtech.game.jflappybird.Constants.gap;
 import static uk.jtech.game.jflappybird.Constants.pipesTime;
 import static uk.jtech.game.jflappybird.Constants.pipew;
 import static uk.jtech.game.jflappybird.Constants.posMax;
 import static uk.jtech.game.jflappybird.Constants.screenx;
 import static uk.jtech.game.jflappybird.Constants.screeny;
+
+/**
+ * Created by jtech on 17/02/2018.
+ * Code from the course developing android game with libGDX by Daniel Ciolfi.
+ */
 
 public class MainClass extends ApplicationAdapter {
 
@@ -46,6 +55,9 @@ public class MainClass extends ApplicationAdapter {
     private BitmapFont font;
     private GlyphLayout glyphLayout = new GlyphLayout();
 
+    private Button buttStart;
+    private Button buttRestart;
+
     @Override
     public void create() {
         batch = new SpriteBatch();
@@ -67,6 +79,9 @@ public class MainClass extends ApplicationAdapter {
         parameter.color = new Color( 1, 1, 1, 1 );
         font = generator.generateFont( parameter );
         generator.dispose();
+
+        buttStart = new Button( new Texture( "buttons/play.png" ), buttx, butty, buttSize );
+        buttRestart = new Button( new Texture( "buttons/replay.png" ), buttx, butty, buttSize );
     }
 
     @Override
@@ -94,6 +109,12 @@ public class MainClass extends ApplicationAdapter {
         font.draw( batch, String.valueOf( points ),
                 (screenx - getSizex( font, String.valueOf( points ) )) / 2,
                 0.98f * screeny );
+
+        if (state == 0) {
+            buttStart.draw( batch );
+        } else if (state == 3) {
+            buttRestart.draw( batch );
+        }
     }
 
     private void update(float time) {
@@ -157,11 +178,22 @@ public class MainClass extends ApplicationAdapter {
 
     private void input() {
         if (Gdx.input.justTouched()) {
+            int x = Gdx.input.getX();
+            int y = screeny - Gdx.input.getY();
             if (state == 0) {
-                state = 1;
+                buttStart.verif( x, y );
             } else if (state == 1) {
                 bird.impulse();
             } else if (state == 3) {
+                buttRestart.verif( x, y );
+            }
+        } else if (!Gdx.input.isTouched()) {
+            if (buttStart.high) {
+                state = 1;
+                buttStart.high = false;
+            }
+
+            if (buttRestart.high) {
                 state = 1;
                 bird.restart( birdinix, screeny / 2 );
                 pipes.clear();
@@ -169,6 +201,8 @@ public class MainClass extends ApplicationAdapter {
                 points = 0;
                 goal = false;
                 objPoints.clear();
+                buttRestart.high = false;
+
             }
         }
     }
@@ -181,6 +215,8 @@ public class MainClass extends ApplicationAdapter {
 
     @Override
     public void dispose() {
+
+        batch.dispose();
 
         background.dispose();
 

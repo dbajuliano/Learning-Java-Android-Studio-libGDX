@@ -7,6 +7,7 @@ import static uk.jtech.game.jflappybird.Constants.pipespeedx;
 
 /**
  * Created by jtech on 17/02/2018.
+ * Code from the course developing android game with libGDX by Daniel Ciolfi.
  */
 
 public class ObjPoints {
