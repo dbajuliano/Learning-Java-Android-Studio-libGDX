@@ -2,8 +2,12 @@ package uk.jtech.game.jflappybird;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Intersector;
 
 import java.util.ArrayList;
@@ -11,8 +15,10 @@ import java.util.List;
 import java.util.Random;
 
 import static uk.jtech.game.jflappybird.Constants.birdinix;
+import static uk.jtech.game.jflappybird.Constants.birdrad;
 import static uk.jtech.game.jflappybird.Constants.gap;
 import static uk.jtech.game.jflappybird.Constants.pipesTime;
+import static uk.jtech.game.jflappybird.Constants.pipew;
 import static uk.jtech.game.jflappybird.Constants.posMax;
 import static uk.jtech.game.jflappybird.Constants.screenx;
 import static uk.jtech.game.jflappybird.Constants.screeny;
@@ -27,9 +33,18 @@ public class MainClass extends ApplicationAdapter {
 
     private List<Pipe> pipes;
 
+    private List<ObjPoints> objPoints;
+
     private float pipetime;
 
     private int state = 0; //0=stopped, 1=running, 3=lose, 4=restart button
+
+    private int points = 0;
+
+    private boolean goal = false;
+
+    private BitmapFont font;
+    private GlyphLayout glyphLayout = new GlyphLayout();
 
     @Override
     public void create() {
@@ -41,8 +56,17 @@ public class MainClass extends ApplicationAdapter {
 
         pipes = new ArrayList<Pipe>();
 
+        objPoints = new ArrayList<ObjPoints>();
+
         pipetime = pipesTime;
 
+        FreeTypeFontGenerator.setMaxTextureSize( 2048 );
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator( Gdx.files.internal( "font.ttf" ) );
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = (int) (0.2f * screenx);
+        parameter.color = new Color( 1, 1, 1, 1 );
+        font = generator.generateFont( parameter );
+        generator.dispose();
     }
 
     @Override
@@ -66,6 +90,10 @@ public class MainClass extends ApplicationAdapter {
         }
 
         bird.draw( batch );
+
+        font.draw( batch, String.valueOf( points ),
+                (screenx - getSizex( font, String.valueOf( points ) )) / 2,
+                0.98f * screeny );
     }
 
     private void update(float time) {
@@ -79,6 +107,13 @@ public class MainClass extends ApplicationAdapter {
                 }
             }
 
+            for (int i = 0; i < objPoints.size(); i++) {
+                if (objPoints.get( i ).update( time ) == 1) {
+                    objPoints.remove( i );
+                    i--;
+                }
+            }
+
             pipetime -= time;
             if (pipetime <= 0) {
                 Random random = new Random();
@@ -86,6 +121,7 @@ public class MainClass extends ApplicationAdapter {
                 pos -= posMax / 2;
                 pipes.add( new Pipe( screenx, screeny / 2 + pos + gap / 2, true ) );
                 pipes.add( new Pipe( screenx, screeny / 2 + pos - gap / 2, false ) );
+                objPoints.add( new ObjPoints( screenx + pipew + 2 * birdrad, screeny / 2 + pos - gap / 2 ) );
                 pipetime = pipesTime;
             }
 
@@ -96,6 +132,20 @@ public class MainClass extends ApplicationAdapter {
                     state = 2;
                 }
             }
+
+            boolean inter = false;
+
+            for (ObjPoints o : objPoints) {
+                if (Intersector.overlaps( bird.body, o.body )) {
+                    if (!goal) {
+                        points++;
+                        Gdx.app.log( "Log", String.valueOf( points ) );
+                        goal = true;
+                    }
+                    inter = true;
+                }
+            }
+            if (!inter) goal = false;
         }
 
         if (state == 1 || state == 2) {
@@ -116,13 +166,21 @@ public class MainClass extends ApplicationAdapter {
                 bird.restart( birdinix, screeny / 2 );
                 pipes.clear();
                 pipetime = pipesTime;
+                points = 0;
+                goal = false;
+                objPoints.clear();
             }
         }
     }
 
+    private float getSizex(BitmapFont font, String text) {
+        glyphLayout.reset();
+        glyphLayout.setText( this.font, text );
+        return glyphLayout.width;
+    }
+
     @Override
     public void dispose() {
-        batch.dispose();
 
         background.dispose();
 
@@ -132,5 +190,6 @@ public class MainClass extends ApplicationAdapter {
             p.dispose();
         }
 
+        font.dispose();
     }
 }
