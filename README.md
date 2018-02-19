@@ -1,6 +1,6 @@
 # jsnake
 
-This is my first android project, it is a single-player mobile game used to learn how to develop on Android Studio with libGDX.
+This is my second android project, it is a single-player mobile game used to learn how to develop on Android Studio with libGDX.
 
 ![Screen-shot](https://github.com/julianotech/jsnake/blob/master/jsnake-sample.png)
 
