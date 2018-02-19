@@ -1,6 +1,6 @@
 # JPianoTiles
 
-This is my first android project, it is a single-player mobile game used to learn how to develop with Android Studio, libGDX, Git, GitHub and Genymotion.
+This is my first android project, it is a single-player mobile game used to learn how to develop on Android Studio with libGDX.
 
 # Motivation
 
@@ -31,9 +31,7 @@ git clone git@github.com:julianotech/JPianoTiles.git
 Then, in Android Studio:
 
 Select Import project (Eclipse, ADT, Gradle, etc.) in the Welcome Screen, go find the repository you just cloned, and click OK.
-Once the project is open, click on Sync Project with Gradle Files in the main toolbar (or navigate to Tools -> Android in the application menu and select the same option).
-
-Once you see a BUILD SUCCESSFUL notice in the Gradle Console, your environment should be ready to build and run the project.
+Once the project is open, your environment should be ready to build and run the project.
 
 # Tests
 
@@ -46,11 +44,11 @@ Android Studio - The development environment for Google's Android, built on JetB
 
 libGDX - Open-source game-development application framework written in the Java programming language
 
-Genymotion - Android emulator that has been designed to test products within a safe, virtual environment
-
 Git - Open source distributed version control system designed to handle everything from small to very large projects
 
 GitHub - Web-based hosting service for version control using git
+
+Genymotion - Android emulator that has been designed to test products within a safe, virtual environment
     
 # Support
 
@@ -75,3 +73,6 @@ See also the list of contributors who participated in this project.
 # License
 
 This sample project is licensed under the MIT License and may be freely distributed under the New BSD license. See the LICENSE.md file.
+
+# Notes
+[![Buy Me Coffee](https://github.com/julianotech/JPianoTiles/blob/master/coffe.png)](https://www.paypal.me/julianotech)
