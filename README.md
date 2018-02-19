@@ -1,5 +1,8 @@
 # jflappybird
-This is my third android project, it is a single-player mobile game used to learn how to develop with Android Studio, libGDX, Git, GitHub and Genymotion.
+
+This is my third android project, it is a single-player mobile game used to learn how to develop on Android Studio with libGDX.
+
+![Screen-shot](https://github.com/julianotech/jflappybird/blob/master/jflappybird-sample.png)
 
 # Motivation
 
@@ -13,9 +16,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 First of all, you should be able to download this entire project code available on GitHub.
 
-To be able to run this game you need to have installed Android Studio (at least 2.3) with an AVD configured.
+To be able to run this game you need to have installed Android Studio (at least 2.3) with an AVD configured. 
 
-A recent version of the Android SDK (at least API 23).
+A recent version of the Android SDK (at least API 23). 
 
 The libGDX library (version 1.9.8 or compatible).
 
@@ -29,13 +32,13 @@ git clone git@github.com:julianotech/jflappybird.git
 
 Then, in Android Studio:
 
-Select Import project (Eclipse, ADT, Gradle, etc.) in the Welcome Screen, go find the repository you just cloned, and click OK. Once the project is open, click on Sync Project with Gradle Files in the main toolbar (or navigate to Tools -> Android in the application menu and select the same option).
-
-Once you see a BUILD SUCCESSFUL notice in the Gradle Console, your environment should be ready to build and run the project.
+Select Import project (Eclipse, ADT, Gradle, etc.) in the Welcome Screen, go find the repository you just cloned, and click OK.
+Once the project is open, your environment should be ready to build and run the project.
 
 # Tests
 
-I have realized tests on Android Visual Studio using AVD for Nexus API 27 by Google Inc. Also, looking to improving the AVD performance using Genymotion virtual devices, running a Samsung Galaxy S6 7.1.0 - API 25 with successful.
+I have realized tests on Android Visual Studio using AVD for Nexus API 27 by Google Inc.
+Also, looking to improving the  AVD performance using Genymotion virtual devices, running a Samsung Galaxy S6 7.1.0 - API 25 with successful.
 
 # Built With
 
@@ -43,19 +46,20 @@ Android Studio - The development environment for Google's Android, built on JetB
 
 libGDX - Open-source game-development application framework written in the Java programming language
 
-Genymotion - Android emulator that has been designed to test products within a safe, virtual environment
-
 Git - Open source distributed version control system designed to handle everything from small to very large projects
 
 GitHub - Web-based hosting service for version control using git
 
+Genymotion - Android emulator that has been designed to test products within a safe, virtual environment
+    
 # Support
 
 If you have questions about the project or encounter any problem while configuring your environment, please don't hesistate to contact the project author or submit an issue.
-Contributing
+    
+# Contributing
 
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
-
+ 
 # Versioning
 
 We use SemVer for versioning. For the versions available, see the tags on this repository.
@@ -71,3 +75,7 @@ See also the list of contributors who participated in this project.
 # License
 
 This sample project is licensed under the MIT License and may be freely distributed under the New BSD license. See the LICENSE.md file.
+
+# Notes
+
+[![Buy Me Coffee](https://github.com/julianotech/jflappybird/blob/master/coffe.png)](https://www.paypal.me/julianotech)
