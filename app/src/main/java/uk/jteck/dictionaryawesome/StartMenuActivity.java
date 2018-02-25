@@ -1,8 +1,8 @@
 package uk.jteck.dictionaryawesome;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class StartMenuActivity extends AppCompatActivity {
@@ -18,7 +18,8 @@ public class StartMenuActivity extends AppCompatActivity {
     }
 
     public void addANewWordClick(View view) {
-        Intent intent = new Intent(this, AddWordActivity.class);
+        Intent intent = new Intent( this, AddWordActivity.class );
+        intent.putExtra( "initialtext", "FooBar" );
         startActivity( intent );
     }
 }
