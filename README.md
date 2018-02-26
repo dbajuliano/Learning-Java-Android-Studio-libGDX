@@ -6,27 +6,27 @@ This is my third android project, it is a single-player mobile game used to lear
 
 # ❤️ Motivation
 
-Since I have finished my first information technology university I was thinking to become a developer, however, I used to work too much and now I have got a free time to develop this dream.
-
-# 👞 Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See Installation for notes on how to deploy the project on a live system.
+Since I have finished my first information technology university I am thinking to become a developer, however, I used to work too much and now I have got a free time to develop this dream.
 
 # ⚠️ Prerequisites
 
-First of all, you should be able to download this entire project code available on GitHub.
+These requirements will get you a copy of the project up and running on your local machine for development and testing purposes. See Installation for notes on how to deploy the project on a live system.
+
+Make sure you are able to download this entire project code available on GitHub.
 
 To be able to run this game you need to have installed Android Studio (at least 2.3) with an AVD configured. 
 
-A recent version of the Android SDK (at least API 23). 
+A recent version of the Android SDK (at least API 19). 
 
 The libGDX library (version 1.9.8 or compatible).
+
+Oracle Java Development Kit ("JDK")
 
 Optional: You can also run it on your own android mobile device using a USB cable and even exporting a .apk file.
 
 # 💾 Installation
 
-First, clone the project from Github:
+After get the environment installed and configured, clone the project from Github:
 ```
 git clone git@github.com:julianotech/jflappybird.git
 ```
@@ -41,6 +41,8 @@ I have realized tests on Android Visual Studio using AVD for Nexus API 27 by Goo
 Also, looking to improving the  AVD performance using Genymotion virtual devices, running a Samsung Galaxy S6 7.1.0 - API 25 with successful.
 
 # 🔨 Built With
+
+- Oracle JDK - Java Development Kit
 
 - Android Studio - The development environment for Google's Android, built on JetBrains' IntelliJ IDEA software
 
@@ -59,6 +61,8 @@ If you have questions about the project or encounter any problem while configuri
 # 👬 Contributing
 
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
+
+See also the list of contributors who participated in this project.
  
 # :octocat: Versioning
 
@@ -66,16 +70,18 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 # 🚶 About Juliano
 
-Juliano is a passionate person who believe that work is a place where you can innovate and have fun. A talented person who imagine and build beautiful Web and mobile applications, share ideas and change the world.
+Juliano is a passionate person who believe that work is a place where you can innovate and have fun.
+
+A talented DBA and System Administrator who have stated to build mobile applications, share ideas and change the world.
 
 I am also love open-source software and I give back to the community as much as I can.
-
-See also the list of contributors who participated in this project.
 
 # :copyright: License
 
 - [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 # 📄 Notes
+
+I came from a poor country and I still have the beggar culture, so please help us and donate!
 
 [![Buy Me Coffee](https://github.com/julianotech/JPianoTiles/blob/master/coffe.png)](https://www.paypal.me/julianotech)
