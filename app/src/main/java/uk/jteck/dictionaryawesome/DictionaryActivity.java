@@ -29,6 +29,8 @@ public class DictionaryActivity extends SimpleActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_dictionary );
 
+        setTraceLifecycle( true );
+
         // read file data and choose initial words/definitions
         dictionary = new HashMap<>();
         readFileData();

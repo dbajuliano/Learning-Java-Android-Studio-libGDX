@@ -15,6 +15,8 @@ public class AddWordActivity extends SimpleActivity {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_add_word );
 
+        setTraceLifecycle( true );
+
         Intent intent = getIntent();
         String text = intent.getStringExtra( "initialtext" ); // "FooBar"
         $TV( R.id.new_word ).setText( text );

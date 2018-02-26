@@ -16,6 +16,8 @@ public class StartMenuActivity extends SimpleActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_start_menu );
+
+        setTraceLifecycle( true );
     }
 
     public void playTheGameClick(View view) {
