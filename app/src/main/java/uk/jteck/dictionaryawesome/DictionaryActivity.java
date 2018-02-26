@@ -1,7 +1,9 @@
 package uk.jteck.dictionaryawesome;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -116,5 +118,11 @@ public class DictionaryActivity extends SimpleActivity {
         // display everything on screen
         $TV( R.id.the_word ).setText( theWord );
         SimpleList.with( this ).setItems( R.id.word_list, defns );
+    }
+
+    public void addAwordClick(View view) {
+        // go to the add word activity
+        Intent intent = new Intent( this, AddWordActivity.class );
+        startActivity( intent );
     }
 }
