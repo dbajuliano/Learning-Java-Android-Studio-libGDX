@@ -78,7 +78,9 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 # 🚶 About Juliano
 
 Juliano is a passionate person who believe that work is a place where you can innovate and have fun.
+
 A talented DBA and System Administrator who have stated to build mobile applications, share ideas and change the world.
+
 I am also love open-source software and I give back to the community as much as I can.
 
 # :copyright: License
