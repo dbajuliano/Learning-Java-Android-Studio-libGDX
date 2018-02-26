@@ -17,7 +17,6 @@ import stanford.androidlib.SimpleList;
 public class DictionaryActivity extends SimpleActivity {
     // a dictionary of {word -> definition} pairs for lookup
     private Map<String, String> dictionary;
-
     /*
      * This method runs when the app is first loading up.
      * It sets up the dictionary of words and definitions.
@@ -63,7 +62,7 @@ public class DictionaryActivity extends SimpleActivity {
     private void readFileData() {
         // read from grewords.txt
         Scanner scan = new Scanner(
-                getResources().openRawResource( R.raw.grewords ) );
+                getResources().openRawResource( R.raw.grewords2 ) );
         readFileHelper( scan );
 
         // read from added_words.txt (try/catch in case file is not found)
