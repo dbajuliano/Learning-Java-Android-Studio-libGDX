@@ -1,5 +1,6 @@
 package uk.jteck.dictionaryawesome;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -33,6 +34,9 @@ public class DictionaryActivity extends SimpleActivity {
 
         // set up event listener to run when the user taps items in the list
         $LV( R.id.word_list ).setOnItemClickListener( this );
+
+        MediaPlayer mp = new MediaPlayer().create( this, R.raw.jeopardy );
+        mp.start();
     }
 
     /*
