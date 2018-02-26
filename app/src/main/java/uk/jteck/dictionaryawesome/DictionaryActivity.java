@@ -20,6 +20,10 @@ import stanford.androidlib.SimpleList;
 public class DictionaryActivity extends SimpleActivity {
     // a dictionary of {word -> definition} pairs for lookup
     private Map<String, String> dictionary;
+    private MediaPlayer mp;
+
+    private int points;
+
     /*
      * This method runs when the app is first loading up.
      * It sets up the dictionary of words and definitions.
@@ -39,26 +43,61 @@ public class DictionaryActivity extends SimpleActivity {
         // set up event listener to run when the user taps items in the list
         $LV( R.id.word_list ).setOnItemClickListener( this );
 
-        MediaPlayer mp = new MediaPlayer().create( this, R.raw.jeopardy );
+        mp = new MediaPlayer().create( this, R.raw.jeopardy );
+        mp.start();
+
+        points = 0;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        mp.pause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
         mp.start();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState( outState );
+        outState.putInt( "points", points );
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState( savedInstanceState );
+        points = savedInstanceState.getInt( "points", 0 );
+    }
+
     /*
-     * This method is called when items in the ListView are clicked.
-     * We check whether the user clicked on the right definition and then pick a new random word
-     * and 5 new random definitions.
-     * Note: This version of onItemClick (with just two parameters) is provided by the SimpleActivity
-     * from the Stanford library.  It wouldn't work if we didn't extend SimpleActivity up above.
-     */
+                     * This method is called when items in the ListView are clicked.
+                     * We check whether the user clicked on the right definition and then pick a new random word
+                     * and 5 new random definitions.
+                     * Note: This version of onItemClick (with just two parameters) is provided by the SimpleActivity
+                     * from the Stanford library.  It wouldn't work if we didn't extend SimpleActivity up above.
+                     */
     @Override
     public void onItemClick(ListView list, int index) {
         String defnClicked = list.getItemAtPosition( index ).toString();
         String theWord = $TV( R.id.the_word ).getText().toString();
         String correctDefn = dictionary.get( theWord );
         if (defnClicked.equals( correctDefn )) {
-            toast( "AWESOME!" );
+            points++;
+            toast( "AWESOME! Score: " + points );
         } else {
-            toast( ":-( LOLOLOL duuuh" );
+            if (points > 0) {
+                points--;
+                toast( ":-( LOLOLOL duuuh. Score: " + points );
+            } else {
+                toast( ":-( LOLOLOL duuuh. Score: " + points );
+            }
+
         }
         chooseWords();
     }
