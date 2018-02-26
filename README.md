@@ -1,3 +1,5 @@
+![logo](https://github.com/julianotech/JPianoTiles/blob/master/geek-academy.png)
+
 # :bird: jflappybird
 
 This is my third android project, it is a single-player mobile game used to learn how to develop on Android Studio with libGDX.
@@ -77,6 +79,8 @@ A talented DBA and System Administrator who have stated to build mobile applicat
 I am also love open-source software and I give back to the community as much as I can.
 
 # :copyright: License
+
+- All rights reserved to Geek Academy written by Daniel Ciolfi on the course developing android game with libGDX.
 
 - [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
