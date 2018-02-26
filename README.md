@@ -1,5 +1,3 @@
-![logo](https://github.com/julianotech/JPianoTiles/blob/master/geek-academy.png)
-
 # 🎹 JPianoTiles
 
 This is my first android project, it is a single-player mobile game used to learn how to develop on Android Studio with libGDX.
