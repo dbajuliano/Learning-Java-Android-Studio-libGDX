@@ -39,8 +39,9 @@ Once the project is open, your environment should be ready to build and run the 
 
 # ☑️ Tests
 
-I have realized tests on Android Visual Studio using AVD for Nexus API 27 by Google Inc.
-Also, looking to improving the  AVD performance using Genymotion virtual devices, running a Samsung Galaxy S6 7.1.0 - API 25 with successful.
+I have tested on Android Studio using AVD for Nexus API 27 by Google Inc.
+
+Looking to improve the AVD performance I have used Genymotion virtual devices to emulate a Samsung Galaxy S6 7.1.0 - API 25 with successful.
 
 # 🔨 Built With
 
