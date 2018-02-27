@@ -1,6 +1,7 @@
 package uk.jteck.dictionaryawesome;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,8 @@ public class DictionaryActivity extends SimpleActivity {
 
     private int points;
 
+    private int highScore;
+
     /*
      * This method runs when the app is first loading up.
      * It sets up the dictionary of words and definitions.
@@ -42,6 +45,11 @@ public class DictionaryActivity extends SimpleActivity {
 
         // set up event listener to run when the user taps items in the list
         $LV( R.id.word_list ).setOnItemClickListener( this );
+
+        // Load the high score
+        SharedPreferences prefs = getSharedPreferences( "myprefs", MODE_PRIVATE );
+        highScore = prefs.getInt( "highScore", 0 );
+
 
         mp = new MediaPlayer().create( this, R.raw.jeopardy );
         mp.start();
@@ -67,6 +75,7 @@ public class DictionaryActivity extends SimpleActivity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState( outState );
         outState.putInt( "points", points );
+        outState.putString( "the_word", $TV( R.id.the_word ).getText().toString() );
     }
 
     @Override
@@ -89,13 +98,21 @@ public class DictionaryActivity extends SimpleActivity {
         String correctDefn = dictionary.get( theWord );
         if (defnClicked.equals( correctDefn )) {
             points++;
-            toast( "AWESOME! Score: " + points );
+            if (points > highScore) {
+                highScore = points;
+
+                SharedPreferences prefs = getSharedPreferences( "myprefs", MODE_PRIVATE );
+                SharedPreferences.Editor prefsEditor = prefs.edit();
+                prefsEditor.putInt( "highScore", highScore );
+                prefsEditor.apply();
+            }
+            toast( "COOL! Score: " + points + ", hi: " + highScore );
         } else {
             if (points > 0) {
                 points--;
-                toast( ":-( LOLOLOL duuuh. Score: " + points );
+                toast( "LOL. Score: " + points + ", hi: " + highScore );
             } else {
-                toast( ":-( LOLOLOL duuuh. Score: " + points );
+                toast( "LOL. Score: " + points + ", hi: " + highScore );
             }
 
         }
