@@ -76,7 +76,7 @@ See also the list of contributors who participated in this project.
 
 We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julianotech/DictionaryAwesome/tags).
 
-# 🚶 About Juliano
+# :video_game: About Juliano
 
 Juliano is a passionate person who believe that work is a place where you can innovate and have fun.
 
