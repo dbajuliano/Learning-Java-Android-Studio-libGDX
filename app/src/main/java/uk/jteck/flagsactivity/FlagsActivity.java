@@ -1,17 +1,15 @@
 package uk.jteck.flagsactivity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import stanford.androidlib.SimpleActivity;
+import stanford.androidlib.SimpleDialog;
 
 public class FlagsActivity extends SimpleActivity {
 
@@ -92,6 +90,7 @@ public class FlagsActivity extends SimpleActivity {
     }
 
     private void doTheDialog(String countryName) {
+        /*
         AlertDialog.Builder builder = new AlertDialog.Builder( FlagsActivity.this );
         builder.setTitle( "My Dialog" );
         builder.setMessage( "You clicked " + countryName );
@@ -107,5 +106,17 @@ public class FlagsActivity extends SimpleActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+        */
+
+        //SimpleDialog.with( this )
+        //        .showAlertDialog( "You REALLY clicked "+ countryName );
+
+        SimpleDialog.with( this )
+                .showInputDialog( "Type your name", "submit" );
+    }
+
+    @Override
+    public void onInputDialogClose(android.app.AlertDialog dialog, String input) {
+        toast( "You Typed " + input );
     }
 }
