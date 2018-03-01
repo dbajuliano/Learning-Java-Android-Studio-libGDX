@@ -1,7 +1,7 @@
 
 ![logo](https://github.com/julianotech/DictionaryAwesome/blob/master/stanford.png)
 
-# :checkered_flag: FlagsActivity
+# :flags: FlagsActivity
 This is my fifth android project following the instructions of Marty Stepp on Stanford University,
 course CS 193A: Android App Development, Winter 2017. https://web.stanford.edu/class/cs193a/index.shtml
 
