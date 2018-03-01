@@ -1,5 +1,6 @@
 package uk.jteck.flagsactivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import stanford.androidlib.SimpleActivity;
 
@@ -87,6 +89,15 @@ public class FlagsActivity extends SimpleActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder( FlagsActivity.this );
                 builder.setTitle( "My Dialog" );
                 builder.setMessage( "You clicked " + countryName );
+
+                builder.setPositiveButton( "OK",
+                        new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int id) {
+                                Toast.makeText( FlagsActivity.this, "You clicked OK",
+                                        Toast.LENGTH_SHORT ).show();
+                            }
+                        } );
 
                 AlertDialog dialog = builder.create();
                 dialog.show();
