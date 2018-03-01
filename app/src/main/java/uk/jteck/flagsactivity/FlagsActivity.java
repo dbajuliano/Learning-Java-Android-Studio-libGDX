@@ -55,7 +55,7 @@ public class FlagsActivity extends AppCompatActivity {
     }
 
     private void addFlag(String countryName, GridLayout layout) {
-        View flag = getLayoutInflater().inflate( R.layout.flag, layout );
+        View flag = getLayoutInflater().inflate( R.layout.flag, /* parent */  null );
 
         TextView tv = flag.findViewById( R.id.flag_text );
         tv.setText( countryName );
@@ -68,6 +68,8 @@ public class FlagsActivity extends AppCompatActivity {
 
         ImageView img = flag.findViewById( R.id.flag_image );
         img.setImageResource( flagImageID );
+
+        layout.addView( flag );
 
 
     }
