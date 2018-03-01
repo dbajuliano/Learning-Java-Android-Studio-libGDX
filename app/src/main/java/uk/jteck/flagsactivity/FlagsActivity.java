@@ -5,9 +5,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class FlagsActivity extends AppCompatActivity {
 
@@ -43,34 +44,40 @@ public class FlagsActivity extends AppCompatActivity {
         GridLayout layout = findViewById( R.id.activity_flags );
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-        ViewGroup.LayoutParams.WRAP_CONTENT,
-        ViewGroup.LayoutParams.WRAP_CONTENT);
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT );
 
         //butt.setLayoutParams( params );
         //layout.addView( butt, 1 );
 
-        for (String name : COUNTRIES){
+        for (String name : COUNTRIES) {
             addFlag( name, layout );
         }
     }
 
-    private void addFlag(String countryName, GridLayout layout) {
+    private void addFlag(final String countryName, GridLayout layout) {
         View flag = getLayoutInflater().inflate( R.layout.flag, /* parent */  null );
 
         TextView tv = flag.findViewById( R.id.flag_text );
         tv.setText( countryName );
 
-        countryName = countryName.replace( " ", "" ).toLowerCase();
+        String countryName2 = countryName.replace( " ", "" ).toLowerCase();
 
         //R.drawable.United States
         //R.drawable.unitedstates
-        int flagImageID = getResources().getIdentifier( countryName, "drawable", getPackageName() );
+        int flagImageID = getResources().getIdentifier(
+                countryName2, "drawable", getPackageName() );
 
-        ImageView img = flag.findViewById( R.id.flag_image );
+        ImageButton img = flag.findViewById( R.id.flag_image );
         img.setImageResource( flagImageID );
+        img.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText( FlagsActivity.this, "You clicked " + countryName,
+                        Toast.LENGTH_SHORT ).show();
+            }
+        } );
 
         layout.addView( flag );
-
-
     }
 }
