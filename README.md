@@ -35,7 +35,7 @@ The complete environment installation could be found here: http://web.stanford.e
 
 After get the environment installed and configured, clone the project from Github:
 ```
-git clone git@github.com:julianotech/DictionaryAwesome.git
+git clone git@github.com:julianotech/FlagsActivity.git
 ```
 Then, in Android Studio:
 
@@ -74,7 +74,7 @@ See also the list of contributors who participated in this project.
  
 # :octocat: Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julianotech/DictionaryAwesome/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julianotech/FlagsActivity/tags).
 
 # :video_game: About Juliano
 
