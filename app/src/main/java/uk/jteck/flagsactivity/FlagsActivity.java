@@ -1,16 +1,17 @@
 package uk.jteck.flagsactivity;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class FlagsActivity extends AppCompatActivity {
+import stanford.androidlib.SimpleActivity;
+
+public class FlagsActivity extends SimpleActivity {
 
     // array of all countries to display
     private static final String[] COUNTRIES = {
@@ -30,6 +31,13 @@ public class FlagsActivity extends AppCompatActivity {
             "United Kingdom",
             "United States"
     };
+
+    // instance initializer
+    // runs before any other code (on construction)
+
+    {
+        setTraceLifecycle( true );
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +81,15 @@ public class FlagsActivity extends AppCompatActivity {
         img.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText( FlagsActivity.this, "You clicked " + countryName,
-                        Toast.LENGTH_SHORT ).show();
+                //Toast.makeText( FlagsActivity.this, "You clicked " + countryName,
+                //Toast.LENGTH_SHORT ).show();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder( FlagsActivity.this );
+                builder.setTitle( "My Dialog" );
+                builder.setMessage( "You clicked " + countryName );
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
             }
         } );
 
