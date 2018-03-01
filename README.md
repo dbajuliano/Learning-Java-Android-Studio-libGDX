@@ -64,7 +64,7 @@ Looking to improve the AVD performance I have used Genymotion virtual devices to
     
 # 🔧 Support
 
-If you have questions about the project or encounter any problem while configuring your environment, please don't hesistate to contact the project author or submit an issue.
+If you have questions about the project or encounter any problem while configuring your environment, please don't hesistate to contact the project author or [submit an issue](https://github.com/julianotech/DictionaryAwesome/issues/new).
     
 # 👬 Contributing
 
