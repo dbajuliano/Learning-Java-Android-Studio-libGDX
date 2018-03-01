@@ -5,7 +5,7 @@
 This is my fifth android project following the instructions of Marty Stepp on Stanford University,
 course CS 193A: Android App Development, Winter 2017. https://web.stanford.edu/class/cs193a/index.shtml
 
-![Screenshot](https://github.com/julianotech/DictionaryAwesome/blob/master/screenshot.png)
+![Screenshot](https://github.com/julianotech/FlagsActivity/blob/master/screenshot.png)
 
 # ❤️ Motivation
 
