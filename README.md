@@ -1,6 +1,6 @@
 ![logo](https://github.com/julianotech/DictionaryAwesome/blob/master/stanford.png)
 
-# :Radio: Jukebox
+# :radio: Jukebox
 This is my seventh android project following the instructions of Marty Stepp on Stanford University,
 course CS 193A: Android App Development, Winter 2017. https://web.stanford.edu/class/cs193a/index.shtml
 
