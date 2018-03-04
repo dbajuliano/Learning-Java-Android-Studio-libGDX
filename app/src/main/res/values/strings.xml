@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Jukebox</string>
+    
+    <string-array name="song_titles">
+        <item>s1</item>
+        <item>s2</item>
+        <item>s3</item>
+        <item>s4</item>
+        <item>s5</item>
+        <item>s6</item>
+        <item>s7</item>
+        <item>s8</item>
+    </string-array>
+</resources>
