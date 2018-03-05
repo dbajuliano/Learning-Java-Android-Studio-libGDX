@@ -4,9 +4,9 @@
 This is my seventh android project following the instructions of Marty Stepp on Stanford University,
 course CS 193A: Android App Development, Winter 2017. https://web.stanford.edu/class/cs193a/index.shtml
 
-Note: I've got a problem with GitHub connection, the YouTube lesson is frozen
-and it is not synchronized so, the progress cannot be tracked because
-I had to upload everything after finished it by complete
+:beetle: Genymotion Bug: I've got a few error messages (see readme.md)
+      and the sound couldn't start so, 
+      the problem has been fixed using the native Google AVD.
 
 ![Screenshot](https://github.com/julianotech/Jukebox/blob/master/screenshot.png)
 
