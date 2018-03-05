@@ -7,6 +7,16 @@ course CS 193A: Android App Development, Winter 2017. https://web.stanford.edu/c
 :beetle: Genymotion Bug: I've got a few error messages (see readme.md)
       and the sound couldn't start so, 
       the problem has been fixed using the native Google AVD.
+      
+      Genymotion error messages:
+      ````
+      W/AudioSystem: AudioFlinger server died!
+      W/IMediaDeathNotifier: media server died
+      I/Choreographer: Skipped 45 frames!  The application may be doing too much work on its main thread.
+      E/MediaPlayer: Should have subtitle controller already set
+      E/MediaPlayer: error (100, 0)
+      E/MediaPlayer: Error (-38,0)
+      ````
 
 ![Screenshot](https://github.com/julianotech/Jukebox/blob/master/screenshot.png)
 
