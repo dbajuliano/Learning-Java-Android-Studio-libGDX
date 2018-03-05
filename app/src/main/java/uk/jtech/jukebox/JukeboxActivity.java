@@ -1,13 +1,16 @@
 package uk.jtech.jukebox;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-public class JukeboxActivity extends AppCompatActivity {
+import stanford.androidlib.SimpleActivity;
+
+public class JukeboxActivity extends SimpleActivity {
+
+    private MediaPlayer player = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,15 +22,41 @@ public class JukeboxActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
                 String[] songTitles = getResources().getStringArray( R.array.song_titles );
-                String song = songTitles[index];
-                Log.d( "result", "onItemClick: " + song );
+                String song = songTitles[index].toLowerCase()
+                        .replace( " ", "" );
+                playSong( song );
+
             }
         } );
+    }
+
+    public void playSong(String song) {
+        // s1 => "R.raw.s1"
+
+        // Stanford library
+        // int songId = getResourcesId ("raw", song); // R.raw. + song
+
+        //without Stanford Library
+        int songID = getResources().getIdentifier( song, "raw", getPackageName() );
+
+        stopSong();
+        player = MediaPlayer.create( this, songID );
+        player.start();
+
+        System.out.println( "log: " + song );
+    }
+
+    public void stopSong() {
+        if (player != null) {
+            player.stop();
+            player = null;
+        }
     }
 
     public void onClickPlay(View view) {
     }
 
     public void onClickStop(View view) {
+        stopSong();
     }
 }
