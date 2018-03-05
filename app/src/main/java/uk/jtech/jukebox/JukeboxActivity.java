@@ -25,7 +25,6 @@ public class JukeboxActivity extends SimpleActivity {
                 String song = songTitles[index].toLowerCase()
                         .replace( " ", "" );
                 playSong( song );
-
             }
         } );
     }
