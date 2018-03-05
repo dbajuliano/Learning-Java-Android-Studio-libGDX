@@ -4,9 +4,10 @@
 This is my seventh android project following the instructions of Marty Stepp on Stanford University,
 course CS 193A: Android App Development, Winter 2017. https://web.stanford.edu/class/cs193a/index.shtml
 
-:beetle: Genymotion Bug: I've got a few error messages (see readme.md)
-      and the sound couldn't start so, 
-      the problem has been fixed using the native Google AVD.
+# :beetle: Genymotion Bug:
+I've got a few error messages
+and the sound couldn't start so,
+the problem has been fixed using the native Google AVD.
 
 Genymotion error messages:
 ```
