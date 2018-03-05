@@ -2,6 +2,7 @@ package uk.jtech.jukebox;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -11,13 +12,23 @@ import stanford.androidlib.SimpleActivity;
 public class JukeboxActivity extends SimpleActivity {
 
     private MediaPlayer player = null;
+    private TextToSpeech tts;
+    private boolean ttsIsReady = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_jukebox );
 
-        ListView list = findViewById( R.id.song_list );
+        tts = new TextToSpeech( this, new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                ttsIsReady = true;
+                log( "text to speed is ready now" );
+            }
+        } );
+
+        final ListView list = findViewById( R.id.song_list );
         list.setOnItemClickListener( new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int index, long id) {
@@ -57,5 +68,9 @@ public class JukeboxActivity extends SimpleActivity {
 
     public void onClickStop(View view) {
         stopSong();
+
+        if (ttsIsReady) {
+            tts.speak( "Hello Julian!", TextToSpeech.QUEUE_FLUSH, null );
+        }
     }
 }
