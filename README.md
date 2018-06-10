@@ -1,6 +1,6 @@
 ![logo](https://github.com/julianotech/DictionaryAwesome/blob/master/stanford.png)
 
-# :bluebook: Dictionary Awesome
+# :blue_book: Dictionary Awesome
 Android project following the instructions of Marty Stepp from Stanford University,
 course CS 193A: Android App Development, Winter 2017. https://web.stanford.edu/class/cs193a/index.shtml
 
