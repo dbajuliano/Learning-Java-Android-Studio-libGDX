@@ -4,7 +4,7 @@
 
 Single-player mobile game used to learn how to develop on Android Studio with libGDX.
 
-![Screen-shot](https://github.com/julianotech/JPianoTiles/blob/master/jpianotiles-sample.png)
+![Screen-shot](https://github.com/julianotech/JPianoTiles/blob/master/JPianoTiles-sample.png)
 
 # ❤️ Motivation
 
