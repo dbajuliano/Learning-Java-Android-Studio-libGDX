@@ -1,14 +1,14 @@
 ![logo](https://github.com/julianotech/JPianoTiles/blob/master/geek-academy.png)
 
-# 🎹 JPianoTiles
+# :piano: JPianoTiles
 
-This is my first android project, it is a single-player mobile game used to learn how to develop on Android Studio with libGDX.
+Single-player mobile game used to learn how to develop on Android Studio with libGDX.
 
-![Screen-shot](https://github.com/julianotech/JPianoTiles/blob/master/JPianoTiles-sample.png)
+![Screen-shot](https://github.com/julianotech/JPianoTiles/blob/master/jpianotiles-sample.png)
 
 # ❤️ Motivation
 
-Since I have finished my first information technology university I am thinking to become a developer, however, I used to work too much and now I have got a free time to develop this dream.
+Since I have finished my first information technology university I was thinking to become a developer so, I used to work too much and now I finally have decided to start this dream.
 
 # ⚠️ Prerequisites
 
@@ -39,9 +39,7 @@ Once the project is open, your environment should be ready to build and run the 
 
 # ☑️ Tests
 
-I have tested on Android Studio using AVD for Nexus API 27 by Google Inc.
-
-Looking to improve the AVD performance I have used Genymotion virtual devices to emulate a Samsung Galaxy S6 7.1.0 - API 25 with successful.
+I have tested this project on Android Studio using AVD for Nexus API 27 by Google Inc with sucess.
 
 # 🔨 Built With
 
@@ -54,8 +52,6 @@ Looking to improve the AVD performance I have used Genymotion virtual devices to
 - Git - Open source distributed version control system designed to handle everything from small to very large projects
 
 - GitHub - Web-based hosting service for version control using git
-
-- Genymotion - Android emulator that has been designed to test products within a safe, virtual environment
     
 # 🔧 Support
 
@@ -64,18 +60,16 @@ If you have questions about the project or encounter any problem while configuri
 # 👬 Contributing
 
 Please read CONTRIBUTING.md for details on our code of conduct, and the process for submitting pull requests to us.
-
-See also the list of contributors who participated in this project.
  
 # :octocat: Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julianotech/JPianoTiles/tags).
+I am using [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julianotech/JPianoTiles/tags).
 
 # :video_game: About Juliano
 
 Juliano is a passionate person who believe that work is a place where you can innovate and have fun.
 
-A talented DBA and System Administrator who have stated to build mobile applications, share ideas and change the world.
+A talented DBA and System Administrator who have start to code.
 
 I am also love open-source software and I give back to the community as much as I can.
 
@@ -86,7 +80,5 @@ I am also love open-source software and I give back to the community as much as 
 - [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 # 📄 Notes
-
-I came from a poor country and I still have the beggar culture, so please help us and donate!
 
 [![Buy Me Coffee](https://github.com/julianotech/JPianoTiles/blob/master/coffe.png)](https://www.paypal.me/julianotech)
