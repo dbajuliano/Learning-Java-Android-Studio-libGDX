@@ -1,6 +1,6 @@
 ![logo](https://github.com/julianotech/JPianoTiles/blob/master/geek-academy.png)
 
-# :piano: JPianoTiles
+# :musical_keyboard: JPianoTiles
 
 Single-player mobile game used to learn how to develop on Android Studio with libGDX.
 
