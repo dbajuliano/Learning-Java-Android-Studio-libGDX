@@ -16,7 +16,7 @@ These requirements will get you a copy of the project up and running on your loc
 
 Please, visit the following  link to check the material requirements: http://web.stanford.edu/class/cs193a/links.shtml
 
-The Stanford Android Library written by Marty Stepp (stepp AT stanford DOT edu) :  http://web.stanford.edu/class/cs193a/lib/
+The Stanford Android Library written by Marty Stepp (stepp AT stanford DOT edu):  http://web.stanford.edu/class/cs193a/lib/
 
 Make sure you are able to download this entire project code available on GitHub.
 
