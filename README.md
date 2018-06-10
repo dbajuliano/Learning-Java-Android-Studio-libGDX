@@ -8,7 +8,7 @@ Single-player mobile game used to learn how to develop on Android Studio with li
 
 # ❤️ Motivation
 
-Since I have finished the university I was thinking to become a developer so finally, I have decided to start learning more about programming.
+Since I have finished the university I was thinking to become a developer, so finally, I have decided to start learning more about programming.
 
 # ⚠️ Prerequisites
 
