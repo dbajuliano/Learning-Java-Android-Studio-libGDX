@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageButton
+        android:id="@+id/flag_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/japan" />
+
+    <TextView
+        android:id="@+id/flag_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Japan" />
+
+    <CheckBox
+        android:id="@+id/flag_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Visited?" />
+
+</android.support.v7.widget.LinearLayoutCompat>
