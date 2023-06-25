@@ -55,7 +55,7 @@ I have tested on Android Studio using AVD for Nexus API 27 by Google Inc with su
 I am using [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/julianotech/jflappybird/tags).
 
 
-# :video_game: About Juliano
+# :man: About Juliano
 
 Juliano is a passionate person who believes that work is a place where you can innovate and have fun.
 
