@@ -70,6 +70,4 @@ I also love open-source software and I give back to the community as much as I c
 
 - [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
-# 📄 Notes
-
 [![Buy Me Coffee](https://github.com/julianotech/JPianoTiles/blob/master/coffe.png)](https://revolut.me/hotsauce)
