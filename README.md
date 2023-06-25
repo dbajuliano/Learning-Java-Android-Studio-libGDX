@@ -1,5 +1,5 @@
 # Learning-Java-Android-Studio-libGDX
-learning how to code
+Learning how to code
 
 # Update
 Study material from 2018 
